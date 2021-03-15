@@ -1,4 +1,4 @@
-from .modules import data
+from modules import data
 
 class Session1(object):
     def __init__(self):
