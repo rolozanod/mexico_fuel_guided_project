@@ -12,7 +12,7 @@ import numpy as np
 # https://www.inegi.org.mx/temas/mg/#Descargas
 
 def process_inegi_shp_request(r, head):
-    shp_file_path = "mexico_fuel_guided_project/conjunto_de_datos/"
+    shp_file_path = "conjunto_de_datos/"
     shp_files_headers = [head]
     shp_resources = ['.shp', '.shx', '.cpg', '.dbf', '.prj']
     zf = zipfile.ZipFile(io.BytesIO(r.content))
@@ -28,10 +28,10 @@ def process_inegi_shp_request(r, head):
             zf.extract(f'{shp_file_path}{shp_file}{shp_ext}', path='/content/')
 
     # Read path
-    coords = gpd.read_file(shp_file_path)
+    coords = gpd.read_file(f'/content/{shp_file_path}')
 
     # Delete current files in path because gpd reads the whole folder
-    for root, dirs, files in os.walk(shp_file_path):
+    for root, _, files in os.walk(shp_file_path):
         for file in files:
             os.remove(os.path.join(root, file))
 
