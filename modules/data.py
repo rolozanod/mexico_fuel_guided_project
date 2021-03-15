@@ -204,7 +204,7 @@ def retrieve_daily_avg_prices(df, daily_data, ftype):
 
     return df0
 
-def get_fuel_dataframe():
+def get_price_dataframe():
     daily_prices, regular_state_prices, premium_state_prices, diesel_state_prices = get_prices()
 
     regular = retrieve_daily_avg_prices(regular_state_prices, daily_prices, 'Gasolina Regular')
@@ -226,9 +226,13 @@ def get_fuel_dataframe():
 
 def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, keep_above=0.9, local=True):
     pop = get_pop()
+    demand = get_demand()
+
+    pop = calc_fpc(pop, demand, regress = True)
+    state_data_stats = pop.groupby('state').LOC_FUEL.sum().div(pop.LOC_FUEL.sum())
 
     if local:
-        coords = pd.read_csv('/content/geoinfo.csv', index=False, sep='|', encoding='cp1252')
+        coords = pd.read_csv('geoinfo.csv', sep='|', encoding='cp1252')
     else:
         coords = get_coords()
 
@@ -236,9 +240,9 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
         left=pop,
         right=coords,
         on=['state', 'loc'],
-        )[['state', 'loc', 'LOC_FUEL', 'lat', 'lon']]
+        )[['state', 'loc', 'lat', 'lon', 'LOC_FUEL']]
 
-    fuel_price = fuel_price = get_fuel_dataframe()
+    fuel_price = get_price_dataframe()
 
     fuel_monthly_state_price = fuel_price.groupby([fuel_price.date.dt.year, 'state']).agg({'price': 'mean'}).reset_index().rename(columns={'date': 'year'})
 
@@ -320,9 +324,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
                 return np.average(dropped, weights = consumption_data.reset_index().loc[dropped.index].LOC_FUEL)
 
         def loc_name(x):
-            # return '|'.join(s)
             if len(x)!=1:
-                # import pdb; pdb.set_trace()
                 return f'{consumption_data.reset_index().loc[x.index].state.unique()[0]}_aggregate({len(x)})'
             else:
                 return x
@@ -335,7 +337,7 @@ def create_fuel_dataframe(min_share=0.1, keep_above=0.9, local=True):
 
     consumption_data, model = calc_consumption_data(return_model=True, aggregated=True)
 
-    data = get_fuel_dataframe()
+    data = get_price_dataframe()
 
     # Add consumption estimate
     data['state_fuel_predict'] = model.predict(data)

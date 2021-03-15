@@ -24,7 +24,7 @@ class Session2(object):
 
         self.retrieve_daily_avg_prices = data.retrieve_daily_avg_prices
 
-        self.get_fuel_dataframe = data.get_fuel_dataframe
+        self.get_price_dataframe = data.get_price_dataframe
 
         self.calc_consumption_data = data.calc_consumption_data
 
