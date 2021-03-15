@@ -2,7 +2,6 @@ import os
 import requests
 import zipfile, io
 from tqdm import tqdm
-!pip install geopandas
 import geopandas as gpd
 import re
 
