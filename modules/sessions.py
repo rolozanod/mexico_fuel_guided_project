@@ -8,4 +8,6 @@ class Session1(object):
 
         self.get_prices = data.get_prices
 
+    
+    
 # END #
