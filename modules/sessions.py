@@ -1,5 +1,6 @@
 from modules import data
 from modules import timeseries
+from modules import opt
 
 class Session1(object):
     def __init__(self):
@@ -128,5 +129,21 @@ class Session4(object):
         self.test_df = timeseries.test_df
 
         self.forecast = timeseries.forecast
+
+        self.monthly_data = opt.monthly_data
+
+        self.get_refinery_data = opt.get_refinery_data
+
+        self.get_distances = opt.get_distances
+
+        self.fix_freight = opt.fix_freight
+
+        self.market_block_rule = opt.market_block_rule
+
+        self.plant_block_rule = opt.plant_block_rule
+
+        self.get_fuel_opt_model = opt.get_fuel_opt_model
+
+        self.optimize_MIP_model = opt.optimize_MIP_model
 
 # END #

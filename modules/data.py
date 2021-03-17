@@ -165,7 +165,7 @@ def retrieve_daily_avg_prices(df, daily_data, ftype):
     # get the daily national price for the fuel type
     daily = daily_data.set_index('date')[ftype]
     daily = daily_data[['date', ftype]]
-    daily['date'] = pd.to_datetime(daily.date, format='%d/%m/%Y')
+    daily.loc[:, 'date'] = pd.to_datetime(daily.date, format='%d/%m/%Y').values
     
     # merge both dataframes to calculate the daily price for each state
     # we have the average month price for each state and the daily national price 
