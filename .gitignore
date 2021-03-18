@@ -1,2 +1,7 @@
 geoinfo.csv
 *.csv
+*log
+*.pyc
+*.ipynb_checkpoints
+modules/__pycache__/*
+Sessions/.ipynb_checkpoints/*

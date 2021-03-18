@@ -807,7 +807,7 @@ def test_df(price_vae, price_ts, litres_vae, litres_ts, window, idx, df_tuples =
         litres_df = pd.DataFrame(predicted_volume.numpy()[0], columns=window.label_columns)
     return price_df, litres_df
 
-def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, final_date, plot=True):
+def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, final_date, plot=True, p_pbar=None):
 
     last_dt = window.d_df.index.max()
     last_idx = len(window.d_df)
@@ -823,7 +823,10 @@ def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, fina
     t_fcst_df = window.l_df.loc[existing_dates].copy()
     d_fcst_df = window.d_df.loc[existing_dates].copy()
 
-    pbar = tqdm(dates2fcst)
+    if p_pbar is None:
+        pbar = tqdm(dates2fcst)
+    else:
+        pbar = dates2fcst
 
     day = 24*60*60
 
@@ -833,8 +836,12 @@ def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, fina
 
     year = 365.2425
 
-    for fcst_dt in pbar:
-        pbar.set_description(f"Date: {fcst_dt}")
+    for fcst_dt in pbar:            
+        if p_pbar is None:
+            pbar.set_description(f"Date: {fcst_dt}")
+        else:
+            p_pbar.set_description(f"Date: {fcst_dt}")
+
         p_fcst_resp_df, t_fcst_resp_df = test_df(price_vae, price_ts, litres_vae, litres_ts, window, idx=0,
             df_tuples = (
                 p_fcst_df.loc[fcst_dt - relativedelta(days=window.input_width):fcst_dt],
