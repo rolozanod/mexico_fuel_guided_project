@@ -807,7 +807,7 @@ def test_df(price_vae, price_ts, litres_vae, litres_ts, window, idx, df_tuples =
         litres_df = pd.DataFrame(predicted_volume.numpy()[0], columns=window.label_columns)
     return price_df, litres_df
 
-def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, final_date, plot=True, p_pbar=None):
+def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, final_date, plot=True, p_pbar=None, normalize=False, saturate=False):
 
     last_dt = window.d_df.index.max()
     last_idx = len(window.d_df)
@@ -851,16 +851,40 @@ def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, fina
         )
 
         d_fcst_resp_df = pd.DataFrame([fcst_dt], columns = ['date']).assign(
-        day_sin = lambda c: c.date.dt.weekday.apply(lambda r: np.sin(r * (2 * np.pi / week))),
-        day_cos = lambda c: c.date.dt.weekday.apply(lambda r: np.cos(r * (2 * np.pi / week))),
-        week_sin = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.sin(r * (2 * np.pi / week))),
-        week_cos = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.cos(r * (2 * np.pi / week))),
-        month_sin = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.sin(r * (2 * np.pi / month))),
-        month_cos = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.cos(r * (2 * np.pi / month))),
-    ).set_index('date')
+            day_sin = lambda c: c.date.dt.weekday.apply(lambda r: np.sin(r * (2 * np.pi / week))),
+            day_cos = lambda c: c.date.dt.weekday.apply(lambda r: np.cos(r * (2 * np.pi / week))),
+            week_sin = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.sin(r * (2 * np.pi / week))),
+            week_cos = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.cos(r * (2 * np.pi / week))),
+            month_sin = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.sin(r * (2 * np.pi / month))),
+            month_cos = lambda c: c.date.map(datetime.timestamp).apply(lambda r: np.cos(r * (2 * np.pi / month))),
+        ).set_index('date')
 
         p_fcst_resp_df.index = [fcst_dt]
         t_fcst_resp_df.index = [fcst_dt]
+
+        if normalize:
+            normalize2mbbl = np.random.normal(loc=870, scale=30)
+            # 158.98730272810
+
+            t_fcst_resp_df *= normalize2mbbl/(t_fcst_resp_df.sum(axis=1).values[0]/158.98730272810/1000)
+
+        if saturate:
+            first_obs_prices = p_fcst_df.loc[fcst_dt - relativedelta(days=window.input_width):fcst_dt - relativedelta(days=window.input_width)]
+
+            # limit annual compounded growth to pct
+            pct = 0.12
+
+            dub = ((1+pct)**(1/365)-1) # daily upper bound
+
+            ub = ((1+dub)**56)-1 # period upper bound
+
+            rate = p_fcst_resp_df.div(first_obs_prices.values)
+
+            rate.clip(lower = -ub, upper=ub, inplace=True)
+
+            p_fcst_resp_df = first_obs_prices*(1+rate.values)
+
+            p_fcst_resp_df.index = [fcst_dt]
 
         if fcst_dt in d_fcst_df.index:
             p_fcst_df.loc[p_fcst_df.index == fcst_dt] = p_fcst_resp_df

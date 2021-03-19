@@ -45,12 +45,12 @@ def monthly_data(version, window, init_date, final_date, plot=True, p_pbar=None)
     
     timeseries.load_weights(version, price_encoder, price_decoder, price_vae, litres_encoder, litres_decoder, litres_vae)
     
-    price_ts_rand, litres_ts_rand = timeseries.forecast(price_vae, price_ts, litres_vae, litres_ts, window=window, init_date=init_date, final_date=final_date, plot=False, p_pbar=p_pbar)
+    price_ts_rand, litres_ts_rand = timeseries.forecast(price_vae, price_ts, litres_vae, litres_ts, window=window, init_date=init_date, final_date=final_date, plot=False, p_pbar=p_pbar, saturate=True)
     
     df = pd.merge(
-        left = price_ts_rand.set_index(['date']).to_period('M').set_index(['state', 'loc'], append=True),
-        right = litres_ts_rand.set_index(['date']).to_period('M').set_index(['state', 'loc'], append=True),
-        left_index=True, right_index=True).assign(revenue=lambda r: r.price*r.litres).groupby(['date', 'state', 'loc']).agg({'litres': sum, 'revenue': sum})\
+        left = price_ts_rand,
+        right = litres_ts_rand,
+        on=['date', 'state', 'loc']).assign(revenue=lambda r: r.price*r.litres).assign(date=lambda r: r.date.dt.to_period('M')).groupby(['date', 'state', 'loc']).agg({'litres': sum, 'revenue': sum})\
     .assign(price=lambda r: r.revenue.div(r.litres)).drop(columns='revenue')
 
     month_stats = pd.DataFrame(litres_ts_rand.date.drop_duplicates())
@@ -72,6 +72,51 @@ def monthly_data(version, window, init_date, final_date, plot=True, p_pbar=None)
     litres_ts_rand = df.litres.reset_index()
     
     return price_ts_rand, litres_ts_rand, month_stats
+
+def annual_data(version, window, init_date, final_date, plot=True, p_pbar=None):
+    
+    FILTERS = 32 # number of filters for the convolution layers
+    KERNEL_SIZE = 15 # size of the convolution window (kernel)
+    STRIDES = 2 # number of timesteps to skip between samples
+    H_UNITS = 2**8 # size of the hidden neurons for prediction
+    LATENT_DIMS = 2**4 # size of the embedding
+    
+    # vae random blocks
+    # price
+    price_ts, price_encoder, price_decoder, price_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=20)
+
+    # litres
+    litres_ts, litres_encoder, litres_decoder, litres_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=100)
+    
+    timeseries.load_weights(version, price_encoder, price_decoder, price_vae, litres_encoder, litres_decoder, litres_vae)
+    
+    price_ts_rand, litres_ts_rand = timeseries.forecast(price_vae, price_ts, litres_vae, litres_ts, window=window, init_date=init_date, final_date=final_date, plot=False, p_pbar=p_pbar, saturate=True)
+    
+    df = pd.merge(
+        left = price_ts_rand,
+        right = litres_ts_rand,
+        on=['date', 'state', 'loc']).assign(revenue=lambda r: r.price*r.litres).assign(date=lambda r: r.date.dt.to_period('Y')).groupby(['date', 'state', 'loc']).agg({'litres': sum, 'revenue': sum})\
+    .assign(price=lambda r: r.revenue.div(r.litres)).drop(columns='revenue')
+
+    year_stats = pd.DataFrame(litres_ts_rand.date.drop_duplicates())
+
+    year_stats = year_stats.assign(days=1).groupby([year_stats.date.dt.to_period('Y')]).agg({'days': sum})
+
+    year_stats['T'] = 1
+
+    year_stats['T'] = year_stats['T'].cumsum().values - 1
+
+    dates_map = {dt: n for n, dt in enumerate(df.reset_index().date.unique())}
+
+    df['T'] = df.reset_index().date.map(dates_map).values
+
+    df = df.set_index(['T'], append=True)
+    
+    price_ts_rand = df.price.reset_index()
+    
+    litres_ts_rand = df.litres.reset_index()
+    
+    return price_ts_rand, litres_ts_rand, year_stats
 
 def get_refinery_data():
     return pd.read_csv('capacity.csv', header=0).rename(columns={'site': 'loc'})
@@ -171,14 +216,15 @@ def production_timeseries(opt_periods, period_stats, fixed_base, fixed_ratio, va
         left_on = 'loc',
         right_index=True
     ).assign(safety_inventory=lambda r: r.daily_capacity*r.safety_inventory+safety_inventory)
-    
+
     t = 0
     production['T'] = t
     production['days'] = period_stats.loc[period_stats['T']==t].days.values[0]
+    production_base = production.copy()
     for t in range(1,opt_periods):
         days = period_stats.loc[period_stats['T']==t].days.values[0]
         production = pd.concat(
-            [production, production.assign(T=t, days=days)], axis = 0
+            [production, production_base.assign(T=t, days=days)], axis = 0
         )
     production.reset_index(drop=True, inplace=True)
     production['capacity'] = production['daily_capacity']*production['days']
@@ -240,7 +286,7 @@ def market_block_rule(b, t, market, DEMAND, PRICE, FREIGHT, step=None, pbar=None
 
     sum([pme.value(x) for x in b.component_data_objects(ctype=pme.Param)])
 
-def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_period, step=None, pbar=None):
+def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, step=None, pbar=None, annual=False):
 
     if pbar is not None:
 
@@ -475,9 +521,14 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
         return model.SWITCH_COSTS*model.SWITCH
     b.SWITCH_COSTS_Expression = pme.Expression(rule=SWITCH_COSTS_rules)
 
-    def LAYOFF_COSTS_rules(model):
-        return model.FIXED*model.LAYOFF*minimum_production_period
-    b.LAYOFF_COSTS_Expression = pme.Expression(rule=LAYOFF_COSTS_rules)
+    if annual:
+        def LAYOFF_COSTS_rules(model):
+            return model.FIXED*model.LAYOFF*minimum_production_months/12
+        b.LAYOFF_COSTS_Expression = pme.Expression(rule=LAYOFF_COSTS_rules)
+    else:
+        def LAYOFF_COSTS_rules(model):
+            return model.FIXED*model.LAYOFF*minimum_production_months
+        b.LAYOFF_COSTS_Expression = pme.Expression(rule=LAYOFF_COSTS_rules)
 
     def CAPEX_COSTS_rules(model):
         return model.INITIAL_CAPEX_COSTS*model.INITIAL_CAPEX + model.STRATEGIC_CAPEX_COSTS*model.STRATEGIC_CAPEX
@@ -503,9 +554,14 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
             - sum(fuel_opt.MARKETS[t, mkt].FREIGHT_COST[plant] for mkt in fuel_opt.LOCATIONS)
     b.PRODUCTION_EBITDA_Expression = pme.Expression(rule=production_EBITDA_rules)
 
-    def production_DEP_rules(model):
-        return (model.INITIAL_AVAILABLE*model.INITIAL_CAPEX_COSTS+model.INITIAL_EXPANSION*model.STRATEGIC_CAPEX_COSTS)/depreciation_years/12
-    b.PRODUCTION_DEP_Expression = pme.Expression(rule=production_DEP_rules)
+    if annual:
+        def production_DEP_rules(model):
+            return (model.INITIAL_AVAILABLE*model.INITIAL_CAPEX_COSTS+model.INITIAL_EXPANSION*model.STRATEGIC_CAPEX_COSTS)/depreciation_years
+        b.PRODUCTION_DEP_Expression = pme.Expression(rule=production_DEP_rules)
+    else:
+        def production_DEP_rules(model):
+            return (model.INITIAL_AVAILABLE*model.INITIAL_CAPEX_COSTS+model.INITIAL_EXPANSION*model.STRATEGIC_CAPEX_COSTS)/depreciation_years/12
+        b.PRODUCTION_DEP_Expression = pme.Expression(rule=production_DEP_rules)
 
     def production_EBIT_rules(model):
         return model.PRODUCTION_EBITDA_Expression - model.PRODUCTION_DEP_Expression
@@ -527,7 +583,7 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
 
     sum([pme.value(x) for x in b.component_data_objects(ctype=pme.Param)])
 
-def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGHT, PRODUCTION, PROJECTS, WACC, depreciation_years, minimum_production_period, step=None, pbar=None):
+def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGHT, PRODUCTION, PROJECTS, WACC, depreciation_years, minimum_production_months, step=None, pbar=None, annual=False):
 
     if pbar is not None:
 
@@ -553,7 +609,7 @@ def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGH
     fuel_opt.DEMAND = pme.Expression(fuel_opt.T, fuel_opt.REFINERIES, rule=DEMAND_Expression_rule)
 
     fuel_opt.PLANTS = pme.Block(fuel_opt.T, fuel_opt.REFINERIES,
-                        rule=lambda self, t, plant: plant_block_rule(self, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_period, step, pbar))
+                        rule=lambda self, t, plant: plant_block_rule(self, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, step, pbar, annual))
 
     if pbar is not None:
 
@@ -611,9 +667,14 @@ def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGH
 
         pbar.set_description(template.format(step=step))
 
-    def MAX_FCF_optimization_rule(model):
-        return sum(model.PLANTS[t, p].PRODUCTION_FCF_Expression/((1+WACC/12)**(t)) for t in model.T for p in model.REFINERIES)
-    fuel_opt.OBJECTIVE = pme.Objective(rule=MAX_FCF_optimization_rule, sense=pme.maximize)
+    if annual:
+        def MAX_FCF_optimization_rule(model):
+            return sum(model.PLANTS[t, p].PRODUCTION_FCF_Expression/((1+WACC)**(t)) for t in model.T for p in model.REFINERIES)
+        fuel_opt.OBJECTIVE = pme.Objective(rule=MAX_FCF_optimization_rule, sense=pme.maximize)
+    else:
+        def MAX_FCF_optimization_rule(model):
+            return sum(model.PLANTS[t, p].PRODUCTION_FCF_Expression/((1+WACC/12)**(t)) for t in model.T for p in model.REFINERIES)
+        fuel_opt.OBJECTIVE = pme.Objective(rule=MAX_FCF_optimization_rule, sense=pme.maximize)
 
     sum([pme.value(x) for x in fuel_opt.component_data_objects(ctype=pme.Param)])
 
@@ -677,10 +738,19 @@ def retrieve_opt_info(model):
 
     market_stats = pd.concat(
         [
+            # pd.DataFrame({'demand': {(t, mkt, 'ALL'): pme.value(model.MARKETS[t, mkt].DEMAND) for t in model.T for mkt in model.LOCATIONS}}),
+            # pd.DataFrame({'price': {(t, mkt, 'ALL'): pme.value(model.MARKETS[t, mkt].PRICE) for t in model.T for mkt in model.LOCATIONS}}),
             pd.DataFrame({'sales': {(t, mkt, plant): pme.value(model.MARKETS[t, mkt].L[plant]) for t in model.T for mkt in model.LOCATIONS for plant in model.REFINERIES}}),
             pd.DataFrame({'freight': {(t, mkt, plant): pme.value(model.MARKETS[t, mkt].FREIGHT_COST[plant]) for t in model.T for mkt in model.LOCATIONS for plant in model.REFINERIES}}),
             pd.DataFrame({'revenue': {(t, mkt, plant): pme.value(model.MARKETS[t, mkt].REVENUE[plant]) for t in model.T for mkt in model.LOCATIONS for plant in model.REFINERIES}}),
             pd.DataFrame({'ebitda': {(t, mkt, plant): pme.value(model.MARKETS[t, mkt].EBITDA[plant]) for t in model.T for mkt in model.LOCATIONS for plant in model.REFINERIES}}),
+        ], axis=1
+        )
+
+    demand = pd.concat(
+        [
+            pd.DataFrame({'demand': {(t, mkt, ): pme.value(model.MARKETS[t, mkt].DEMAND) for t in model.T for mkt in model.LOCATIONS}}),
+            pd.DataFrame({'price': {(t, mkt): pme.value(model.MARKETS[t, mkt].PRICE) for t in model.T for mkt in model.LOCATIONS}}),
         ], axis=1
         )
 
@@ -714,8 +784,44 @@ def retrieve_opt_info(model):
     
     objective = pd.DataFrame({'objective': {0: pme.value(model.OBJECTIVE)}})
 
-    return market_stats, prod_stats, inter_facilites, objective
+    return demand, market_stats, prod_stats, inter_facilites, objective
 
+def load_opt_info(save_path, opt_version):
 
+    objective_ls = []
+
+    for s in os.listdir(os.path.join(save_path, opt_version, 'objective')):
+
+        objective_ls.append(pd.read_csv(save_path+opt_version+f"/objective/{s}").assign(file=s))
+
+    market_stats_ls = []
+
+    for s in os.listdir(os.path.join(save_path, opt_version, 'market')):
+
+        market_stats_ls.append(pd.read_csv(save_path+opt_version+f"/market/{s}").assign(file=s))
+    
+    demand_ls = []
+
+    for s in os.listdir(os.path.join(save_path, opt_version, 'demand')):
+        
+        demand_ls.append(pd.read_csv(save_path+opt_version+f"/demand/{s}").assign(file=s))
+
+    prod_stats_ls =  []
+    
+    for s in os.listdir(os.path.join(save_path, opt_version, 'production')):
+
+        prod_stats_ls.append(pd.read_csv(save_path+opt_version+f"/production/{s}").assign(file=s))
+
+    market_stats = pd.concat(market_stats_ls)
+
+    demand = pd.concat(demand_ls)
+
+    prod_stats = pd.concat(prod_stats_ls)
+
+    objective = pd.concat(objective_ls)
+
+    period_stats = pd.read_csv(save_path+opt_version+f"/ts_specs/stats.csv")
+
+    return market_stats, demand, prod_stats, objective, period_stats
 
 # END

@@ -118,7 +118,7 @@ def get_pop():
     return pd.read_csv('short_censo2020.csv', header=0).rename(columns={"ENTIDAD": "state_key", "NOM_ENT": "state", "MUN": "loc_key", "NOM_MUN": "loc", "POBTOT": "pop", "TVIVHAB": "hab_houses", "VPH_AUTOM": "cars_per_house"})
 
 def get_demand():
-    return pd.read_csv('demand.csv').rename(columns={'Estado': 'state'}).set_index('state').T.unstack().reset_index().rename(columns={'level_1': 'year', 0: 'MBBL'}).assign(year=lambda r: r['year'].astype(int))
+    return pd.read_csv('demand.csv').rename(columns={'Estado': 'state'}).set_index('state').T.unstack().reset_index().rename(columns={'level_1': 'year', 0: 'MBBL'}).assign(year=lambda r: r['year'].astype(int), BBL=lambda r: r.MBBL*1e3)
 
 def calc_fpc(pop, demand, regress = True):
 
@@ -126,12 +126,12 @@ def calc_fpc(pop, demand, regress = True):
         left=demand.loc[(demand.year==2020)].drop(columns=['year']),
         right=pop.groupby('state', as_index=False).agg({'pop': sum, 'hab_houses': sum, 'cars_per_house': sum}),
         on='state',
-    ).assign(MBBL=lambda r: r['MBBL']*1e3)
+    )
 
     if regress:
 
         inputs = ["pop", 'cars_per_house', 'hab_houses']
-        response = ["MBBL"]
+        response = ["BBL"]
 
         def build_features(df):
             X = df[inputs].values
@@ -149,7 +149,7 @@ def calc_fpc(pop, demand, regress = True):
         
         state_data.loc[state_data.isnull().any(axis=1), response] = reg.predict(X_p)
 
-    state_data['consumption'] = state_data['MBBL'].div(state_data['pop'])
+    state_data['consumption'] = state_data['BBL'].div(state_data['pop'])
 
     pop['LOC_FUEL'] = pop.apply(lambda r: state_data.set_index('state').consumption.to_dict()[r['state']]*r['pop'], axis=1)
 
@@ -240,7 +240,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
         left=pop,
         right=coords,
         on=['state', 'loc'],
-        )[['state', 'loc', 'lat', 'lon', 'LOC_FUEL']]
+        )[['state', 'loc', 'lat', 'lon', 'LOC_FUEL']].drop_duplicates()
 
     fuel_price = get_price_dataframe()
 
@@ -265,7 +265,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
                     # We will fill the missing states data with this statistic using the known consumption for all the states
                     fuel_monthly_state_consumption.loc[idx, stt] = fuel_monthly_state_consumption.loc[idx,:].sum()*state_data_stats[stt]
 
-    fuel_monthly_state_consumption = fuel_monthly_state_consumption.unstack().reset_index().rename(columns={'level_1': 'year', 0: 'MBBL'}).assign(MBBL=lambda r: r['MBBL']*1e3).assign(year=lambda r: r['year'].astype(int))
+    fuel_monthly_state_consumption = fuel_monthly_state_consumption.unstack().reset_index().rename(columns={'level_1': 'year', 0: 'MBBL'}).assign(BBL=lambda r: r['MBBL']*1e3).assign(year=lambda r: r['year'].astype(int))
 
     elasticity = pd.merge(
         left=fuel_monthly_state_consumption,
@@ -273,21 +273,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
         on=['year', 'state']
     ).dropna()
 
-    model = ols('MBBL ~ C(state) * price', elasticity).fit()
-
-    elasticity['predict'] = model.predict(elasticity)
-
-    # Copy the fuel price to append vfuel consumption
-    data = fuel_price.copy()
-
-    # Add consumption estimate
-    data['state_fuel_predict'] = model.predict(data)
-
-    # Esteimate the fuel consumption average to calculate a curve of consumption over the month
-    fuel_demand_avg = data.groupby([data.date.dt.year, 'state']).agg({'state_fuel_predict': 'mean'}).state_fuel_predict
-
-    # Calculate the curve over the average of the month
-    data['state_fuel_predict'] = data.set_index([data.date.dt.year, 'state']).state_fuel_predict.div(fuel_demand_avg).values
+    model = ols('BBL ~ C(state) * price', elasticity).fit()
 
     # Calculate the revenue for each location and estimate its participation on each state
     consumption_data = consumption_data.set_index(["state", "loc"])
@@ -352,7 +338,7 @@ def create_fuel_dataframe(min_share=0.1, keep_above=0.9, local=True):
         left=consumption_data,
         right=data,
         on=['state'],
-    )
+    ).drop_duplicates()
 
     data['LOC_FUEL'] *= data['state_fuel_predict']
 
@@ -374,7 +360,7 @@ def plot_monthly_data(data):
 
     m = data.groupby(data.date.dt.to_period("M")).agg({'litres': 'sum'}).litres
     # m.index = m.index.to_period('M')
-    axes[1].set_title('Tons')
+    axes[1].set_title('Litres')
     m.plot(ax=axes[1])
 
     fig.show()
