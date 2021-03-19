@@ -5,3 +5,4 @@ geoinfo.csv
 *.ipynb_checkpoints
 modules/__pycache__/*
 Sessions/.ipynb_checkpoints/*
+scenarios*

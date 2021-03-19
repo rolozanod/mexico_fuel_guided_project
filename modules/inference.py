@@ -153,3 +153,11 @@ def plot_plant_performance(production, period_stats):
     fig = go.Figure(data=data, layout = layout)
     fig.show()
 
+# def tornado_diagram():
+
+# def mc_simulation():
+
+
+
+
+# END
