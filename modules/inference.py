@@ -173,15 +173,15 @@ def plot_plant_performance(production, period_stats):
 
     data = [
             go.Bar(
-                x=get_stat('ebitda_L', avg=True)['plant'],
-                y=get_stat('ebitda_L', avg=True)['ebitda_L'],
-                name='ebitda (right axis)',
-                yaxis='y2'),
+                x=get_stat('ebitda', avg=False)['plant'],
+                y=get_stat('ebitda', avg=False)['ebitda'],
+                name='ebitda',
+                yaxis='y'),
             go.Bar(
-                x=get_stat('fcf_wo_nwc_L', avg=True)['plant'],
-                y=get_stat('fcf_wo_nwc_L', avg=True)['fcf_wo_nwc_L'],
-                name='fcf_wo_nwc(right axis)',
-                yaxis='y2'),
+                x=get_stat('fcf_wo_nwc', avg=False)['plant'],
+                y=get_stat('fcf_wo_nwc', avg=False)['fcf_wo_nwc'],
+                name='fcf_wo_nwc',
+                yaxis='y'),
             go.Bar(
                 x=get_stat('capex', avg=False)['plant'],
                 y=get_stat('capex', avg=False)['capex'],
@@ -199,7 +199,7 @@ def plot_plant_performance(production, period_stats):
                         'tickfont': {'size':10},
                         },
                 'yaxis':{'title': 'MXN'},
-                'yaxis2':{'title': 'MXN/L', 'overlaying': 'y', 'side': 'right'},
+                # 'yaxis2':{'title': 'MXN/L', 'overlaying': 'y', 'side': 'right'},
             }
 
     fig = go.Figure(data=data, layout = layout)
@@ -221,11 +221,13 @@ def get_NPV_stats_plant_performance(production, period_stats, wacc):
 
     production['DF'] = production['T'].map(period_stats['DF'].to_dict())
 
+    production_base = production.copy()
+
     production = production.assign(NPV_base=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex))
 
-    production = production.assign(revenues=lambda r: r.revenues*(1.5)).assign(NPV_revenues_up_50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(revenues=lambda r: r.revenues/(1.5))
+    production = production.assign(revenues=lambda r: r.revenues + abs(r.revenues*(0.5))).assign(NPV_revenues_up_50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(revenues=lambda r: production_base.loc[r.index].revenues)
 
-    production = production.assign(revenues=lambda r: r.revenues*(0.5)).assign(NPV_revenues_down_50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(revenues=lambda r: r.revenues/(0.5))
+    production = production.assign(revenues=lambda r: r.revenues - abs(r.revenues*(0.5))).assign(NPV_revenues_down_50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(revenues=lambda r: production_base.loc[r.index].revenues)
 
     production = production.assign(capex=lambda r: r.capex*(1.5)).assign(NPV_capex_up50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(capex=lambda r: r.capex/(1.5))
 
@@ -375,18 +377,16 @@ def mc_simulation(prod_stats, period_stats, WACC, samples=500, plot=True):
 
     return benefits, costs
 
-def real_opt_valuation(prod_stats, benefits, costs, capex, rf):
+def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
     log_chg = (1+prod_stats.set_index(['T', 'file', 'plant']).nopat.unstack(level=[0]).drop(columns=0).pct_change(axis=1)).apply(np.log).replace([np.inf, -np.inf], np.nan)
     mu_log_chg = log_chg.mean(axis=1)
     vol_samples = ((log_chg.T - mu_log_chg)**2).mean(axis=0).apply(np.sqrt)
     vol = vol_samples.reset_index().rename(columns={0: 'vol'}).groupby('plant').agg({'vol': 'mean'}).fillna(0)
 
-    T = max(prod_stats['T'])
-
     def d1(S, K, rf, vol, t):
-        denom = np.log(S/K) + (rf + vol/2)*t
-        numer = np.sqrt(vol*t)
-        return denom/numer
+        numer = np.log(S/K) + (rf + vol/2)*t
+        denom = np.sqrt(vol*t)
+        return numer/denom
 
     def d2(S, K, rf, vol, t):
         return d1(S, K, rf, vol, t) - np.sqrt(vol*t)
@@ -404,6 +404,39 @@ def real_opt_valuation(prod_stats, benefits, costs, capex, rf):
     # call = pd.concat([benefits.mean(axis=0), costs.mean(axis=0), vol], axis=1).apply(lambda r: BS_model(r[0], r[1], rf, r['vol'], T), axis=1).fillna(0)
 
     npv = benefits - costs
+
+    if plot:
+        valuation = pd.concat([npv.mean(axis=0), call], axis=1)
+        valuation.columns = ['npv', 'option']
+        valuation.index.names = ['plant']
+
+        data = [
+                go.Bar(
+                    x=valuation.reset_index().plant,
+                    y=valuation.npv,
+                    name='NPV',
+                    yaxis='y'),
+                go.Bar(
+                    x=valuation.reset_index().plant,
+                    y=valuation.option,
+                    name='Option',
+                    yaxis='y'),
+            ]
+
+        layout = {
+                    'title': 'Extended NPV',
+                    'barmode': 'stack',
+                    'xaxis':{
+                            'title': 'Refinery',
+                            'showticklabels': True,
+                            'side':'bottom',
+                            'tickfont': {'size':10},
+                            },
+                    'yaxis':{'title': 'MXN'},
+                }
+
+        fig = go.Figure(data=data, layout = layout)
+        fig.show()
 
     return npv.mean(axis=0),  call
 

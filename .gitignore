@@ -1,8 +1,6 @@
-geoinfo.csv
-*.csv
+/*.csv
 *log
 *.pyc
 *.ipynb_checkpoints
-modules/__pycache__/*
-Sessions/.ipynb_checkpoints/*
-scenarios*
+/modules/__pycache__/*.pyc
+/Sessions/.ipynb_checkpoints/*.ipynb
