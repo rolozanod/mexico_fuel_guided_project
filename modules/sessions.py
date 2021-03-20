@@ -77,6 +77,8 @@ class ProjectSessions(object):
 
         self.load_opt_info = opt.load_opt_info
 
+        self.load_opt_valuation = opt.load_opt_valuation
+
         self.plot_objective_hist = inference.plot_objective_hist
 
         self.plot_plant_production_plan = inference.plot_plant_production_plan

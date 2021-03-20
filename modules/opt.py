@@ -887,4 +887,40 @@ def load_opt_info(save_path, opt_version):
 
     return market_stats, demand, prod_stats, objective, period_stats
 
+def load_opt_valuation(save_path):
+
+    base_market_stats, base_demand_stats, base_prod_stats, base_objective, _ = load_opt_info(save_path, 'baseline')
+
+    market_stats, demand_stats, prod_stats, objective, period_stats = load_opt_info(save_path, 'optimal')
+
+    base_market_stats.set_index(['file', 'T', 'loc', 'plant'], inplace=True)
+
+    market_stats.set_index(['file', 'T', 'loc', 'plant'], inplace=True)
+
+    market_stats -= base_market_stats
+
+    base_demand_stats.set_index(['file', 'T', 'loc'], inplace=True)
+
+    demand_stats.set_index(['file', 'T', 'loc'], inplace=True)
+
+    base_prod_stats.set_index(['file', 'T', 'plant'], inplace=True)
+
+    prod_stats.set_index(['file', 'T', 'plant'], inplace=True)
+
+    prod_stats -= base_prod_stats
+
+    base_objective.set_index(['file', 'step'], inplace=True)
+
+    objective.set_index(['file', 'step'], inplace=True)
+
+    objective -= base_objective
+
+    return market_stats.reset_index(), demand_stats.reset_index(), prod_stats.reset_index(), objective.reset_index(), period_stats
+
+
+
+
+
+
+
 # END
