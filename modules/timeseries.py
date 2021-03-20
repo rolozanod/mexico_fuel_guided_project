@@ -872,13 +872,13 @@ def forecast(price_vae, price_ts, litres_vae, litres_ts, window, init_date, fina
             first_obs_prices = p_fcst_df.loc[fcst_dt - relativedelta(days=window.input_width):fcst_dt - relativedelta(days=window.input_width)]
 
             # limit annual compounded growth to pct
-            pct = 0.12
+            pct = 0.09
 
             dub = ((1+pct)**(1/365)-1) # daily upper bound
 
-            ub = ((1+dub)**56)-1 # period upper bound
+            ub = ((1+dub)**56) - 1 # period upper bound
 
-            rate = p_fcst_resp_df.div(first_obs_prices.values)
+            rate = p_fcst_resp_df.div(first_obs_prices.values) - 1
 
             rate.clip(lower = -ub, upper=ub, inplace=True)
 

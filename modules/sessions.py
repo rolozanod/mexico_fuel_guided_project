@@ -61,6 +61,8 @@ class ProjectSessions(object):
 
         self.fix_freight = opt.fix_freight
 
+        self.build_freight_costs = opt.build_freight_costs
+
         self.market_block_rule = opt.market_block_rule
 
         self.plant_block_rule = opt.plant_block_rule
@@ -79,11 +81,20 @@ class ProjectSessions(object):
 
         self.plot_plant_production_plan = inference.plot_plant_production_plan
 
+        self.plot_plant_capex_plan = inference.plot_plant_capex_plan
+
         self.plot_market_consumption = inference.plot_market_consumption
 
         self.plot_plant_performance = inference.plot_plant_performance
 
-        
+        self.get_stats_plant_performance = inference.get_stats_plant_performance
 
+        self.get_NPV_stats_plant_performance = inference.get_NPV_stats_plant_performance
+
+        self.sensitivity_diagram = inference.sensitivity_diagram
+
+        self.mc_simulation = inference.mc_simulation
+
+        self.real_opt_valuation = inference.real_opt_valuation
 
 # END #

@@ -138,7 +138,7 @@ def fix_freight(window, freight, overall_mxnxkms_L, specific_state_connection_ra
     coords = pd.concat([window.coords, get_refinery_data()], axis=0).drop(columns=['daily_capacity'])
 
     if not not specific_state_connection_rates:
-        print('Modifying rates for specifig state connections')
+        print('Modifying rates for specific state connections')
         specific_modifications = [] # a list to save the modified locations so they are not modified in the general case
         specific_states = list(np.unique([k[0] for k in specific_state_connection_rates.keys()]+[k[1] for k in specific_state_connection_rates.keys()]))
         specific_states = coords.loc[coords.state.isin(specific_states), ['state', 'loc']].drop_duplicates()
@@ -175,10 +175,21 @@ def production_timeseries(opt_periods, period_stats, fixed_base, fixed_ratio, va
         'Cangrejera Refinery',
         'Dos Bocas Refinery']
 
+    refineries_profle = {
+        'Cadereyta Refinery': 0.95,
+        'Madero Refinery': 0.92,
+        'Tula Refinery': 1.0,
+        'Salamanca Refinery': 1.0,
+        'Minatitlan Refinery': 1.15,
+        'Salina Cruz Refinery': 1.07,
+        'Cangrejera Refinery': 2.0,
+        'Dos Bocas Refinery': 0.9
+        }
+
     production = get_refinery_data()
     
     fixed = fixed_base
-    fixed_costs_dict = {'fixed': {r: fixed_ratio for r in refineries}}
+    fixed_costs_dict = {'fixed': {r: fixed_ratio*refineries_profle[r] for r in refineries}}
 
     production = pd.merge(
         left=production,
@@ -188,7 +199,7 @@ def production_timeseries(opt_periods, period_stats, fixed_base, fixed_ratio, va
     ).assign(fixed=lambda r: r.daily_capacity*r.fixed*30+fixed)
 
     variable = variable_base
-    variable_costs_dict = {'variable': {r: variable_ratio for r in refineries}}
+    variable_costs_dict = {'variable': {r: variable_ratio*refineries_profle[r] for r in refineries}}
 
     production = pd.merge(
         left=production,
@@ -224,14 +235,56 @@ def production_timeseries(opt_periods, period_stats, fixed_base, fixed_ratio, va
     for t in range(1,opt_periods):
         days = period_stats.loc[period_stats['T']==t].days.values[0]
         production = pd.concat(
-            [production, production_base.assign(T=t, days=days)], axis = 0
+            [production, production_base.assign(
+                T=t,
+                days=days,
+                fixed=lambda r: r.fixed*(1.05)**t,
+                variable=lambda r: r.variable*(1.09)**t,
+            )], axis = 0
         )
     production.reset_index(drop=True, inplace=True)
     production['capacity'] = production['daily_capacity']*production['days']
 
     return production
 
-def market_block_rule(b, t, market, DEMAND, PRICE, FREIGHT, step=None, pbar=None):
+def build_freight_costs(w, overall_mxnxton_kms):
+    distances = get_distances(window=w)
+
+    # overall_mxnxton_kms = 0.2 # MXN/(Ton-Km)
+    pipe_size = 20000 # (L/trip) 
+    fuel_weight = (0.8508+0.7489)/2/1000 # (Ton/L) = (Kg/L)/(1 Ton/1000 Kg) 0.8508 is for fuel, 0.7489 is for gasoline
+
+    ### trip = 20,000 litres ###
+
+    tonsxpipe = pipe_size*fuel_weight # (Ton/trip) = (L/trip)*(Ton/L)
+    overall_mxnxkms = overall_mxnxton_kms*tonsxpipe # MXN/(Km-trip) = MXN/(Ton-Km)*(Ton/trip)
+    overall_mxnxkms_L = overall_mxnxkms/pipe_size # MXN/(Km-L) = MXN/(Km-trip)/(L/trip)
+
+    freight = distances.copy()
+    freight['freightxkms'] = overall_mxnxkms_L
+            
+    freight['freight'] = freight['kms']*freight['freightxkms']
+
+    specific_states_rates = {
+        'Baja California': 1.2, # Peninsula
+        'Baja California Sur': 1.5, # Peninsula
+        'Yucatán': 1.3, # Peninsula
+        'Oaxaca': 1.2, # Mountain range
+        'San Luis Potosí': 0.85 # Logistics hub
+    }
+
+    specific_state_connection_rates = {
+        ('Baja California', 'Baja California Sur'): 1.3, # Mountain range
+        ('Oaxaca', 'Baja California Sur'): 0.2, # Vessel
+        ('Tamaulipas', 'Yucatán'): 0.2, # Vessel
+        ('Veracruz de Ignacio de la Llave', 'Yucatán'): 0.2, # Vessel
+    }
+
+    freight = fix_freight(w, freight, overall_mxnxkms_L, specific_state_connection_rates, specific_states_rates)
+
+    return freight
+
+def market_block_rule(b, t, market, DEMAND, PRICE, FREIGHT, freight_inflation = 0.12, step=None, pbar=None):
     
     if pbar is not None:
 
@@ -245,7 +298,7 @@ def market_block_rule(b, t, market, DEMAND, PRICE, FREIGHT, step=None, pbar=None
 
     dict_price = {None: PRICE.loc[(PRICE['loc']==market)&(PRICE['T']==t)].price.values[0]}
 
-    dict_freight = FREIGHT.set_index(['source']).loc[FREIGHT.set_index(['source'])['destination']==market].freight.to_dict()
+    dict_freight = FREIGHT.assign(freight=lambda r: r.freight*(1+freight_inflation)**t).set_index(['source']).loc[FREIGHT.set_index(['source'])['destination']==market].freight.to_dict()
 
     dict_freight = {k: it for k, it in dict_freight.items() if k[0] in fuel_opt.REFINERIES}
 
@@ -286,7 +339,7 @@ def market_block_rule(b, t, market, DEMAND, PRICE, FREIGHT, step=None, pbar=None
 
     sum([pme.value(x) for x in b.component_data_objects(ctype=pme.Param)])
 
-def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, step=None, pbar=None, annual=False):
+def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, freight_inflation=0.09, step=None, pbar=None, annual=False):
 
     if pbar is not None:
 
@@ -298,7 +351,7 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
 
     b.INTER_PLANTS = pme.Set(initialize=[p for p in fuel_opt.REFINERIES if p not in [plant, 'Slack']], name='Inter facilities connection', doc='Inter facilities connection')
 
-    dict_freight = FREIGHT.set_index(['source']).loc[FREIGHT.set_index(['source'])['destination']==plant].freight.to_dict()
+    dict_freight = FREIGHT.assign(freight=lambda r: r.freight*(1+freight_inflation)**t).set_index(['source']).loc[FREIGHT.set_index(['source'])['destination']==plant].freight.to_dict()
 
     dict_freight = {k: it for k, it in dict_freight.items() if k[0] in b.INTER_PLANTS}
 
@@ -498,6 +551,7 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
         [0,0,0,0,0,0],
 
         [0,1,0,0,0,0],
+        [0,1,0,0,0,1],
 
         [1,1,0,0,0,0],
         [1,1,0,1,0,0],
@@ -583,7 +637,7 @@ def plant_block_rule(b, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_ye
 
     sum([pme.value(x) for x in b.component_data_objects(ctype=pme.Param)])
 
-def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGHT, PRODUCTION, PROJECTS, WACC, depreciation_years, minimum_production_months, step=None, pbar=None, annual=False):
+def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGHT, PRODUCTION, PROJECTS, WACC, depreciation_years, minimum_production_months, step=None, pbar=None, annual=False, baseline=False):
 
     if pbar is not None:
 
@@ -602,14 +656,23 @@ def get_fuel_opt_model(opt_periods, REFINERIES, LOCATIONS, DEMAND, PRICE, FREIGH
     fuel_opt.LOCATIONS = pme.Set(initialize=LOCATIONS, name='Locations', doc='Locations')
 
     fuel_opt.MARKETS = pme.Block(fuel_opt.T, fuel_opt.LOCATIONS,
-                        rule=lambda self, t, mkt: market_block_rule(self, t, mkt, DEMAND, PRICE, FREIGHT, step, pbar))
+                        rule=lambda self, t, mkt: market_block_rule(self, t, mkt, DEMAND, PRICE, FREIGHT, step=step, pbar=pbar))
 
     def DEMAND_Expression_rule(model, t, plant):
         return sum(fuel_opt.MARKETS[t, mkt].L[plant] for mkt in fuel_opt.LOCATIONS)
     fuel_opt.DEMAND = pme.Expression(fuel_opt.T, fuel_opt.REFINERIES, rule=DEMAND_Expression_rule)
 
     fuel_opt.PLANTS = pme.Block(fuel_opt.T, fuel_opt.REFINERIES,
-                        rule=lambda self, t, plant: plant_block_rule(self, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, step, pbar, annual))
+                        rule=lambda self, t, plant: plant_block_rule(self, t, plant, FREIGHT, PRODUCTION, PROJECTS, depreciation_years, minimum_production_months, step=step, pbar=pbar, annual=annual))
+
+    if baseline:
+        for plant in fuel_opt.REFINERIES:
+            for t in fuel_opt.T:
+                fuel_opt.PLANTS[t, plant].EXPANSION.fix(0)
+                fuel_opt.PLANTS[t, plant].INITIAL_EXPANSION.fix(0)
+                if PROJECTS.loc[(PROJECTS['loc']==plant)&(PROJECTS.type=='INITIAL')].capex.values[0] != 0:
+                    fuel_opt.PLANTS[t, plant].AVAILABLE.fix(0)
+                    fuel_opt.PLANTS[t, plant].INITIAL_AVAILABLE.fix(0)
 
     if pbar is not None:
 
