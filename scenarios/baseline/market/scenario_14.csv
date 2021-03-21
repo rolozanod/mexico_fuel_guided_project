@@ -698,12 +698,12 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Acapulco de Juárez,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Acapulco de Juárez,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Acapulco de Juárez,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Acapulco de Juárez,Madero Refinery,262368018.1875,3611196049.496944,5712657535.794637,2101461486.2976923
+1,Acapulco de Juárez,Madero Refinery,0.0,0.0,0.0,0.0
 1,Acapulco de Juárez,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Acapulco de Juárez,Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Acapulco de Juárez,Salamanca Refinery,331276560.6875,4559643418.088792,7236729369.348159,2677085951.259367
 1,Acapulco de Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Acapulco de Juárez,Tula Refinery,0.0,0.0,0.0,0.0
-1,Aguascalientes,Cadereyta Refinery,470436897.9375,6475026488.005218,9730970888.66688,3255944400.6616626
+1,Aguascalientes,Cadereyta Refinery,545628228.375,7509949255.300244,11296442840.53826,3786493585.2380157
 1,Aguascalientes,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes,Madero Refinery,0.0,0.0,0.0,0.0
@@ -711,12 +711,12 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Aguascalientes,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes,Tula Refinery,0.0,0.0,0.0,0.0
-1,Aguascalientes_aggregate(10),Cadereyta Refinery,0.0,0.0,0.0,0.0
+1,Aguascalientes_aggregate(10),Cadereyta Refinery,173147699.34375,2383180283.0586934,3623013782.560663,1239833499.5019698
 1,Aguascalientes_aggregate(10),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes_aggregate(10),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes_aggregate(10),Madero Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes_aggregate(10),Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Aguascalientes_aggregate(10),Salamanca Refinery,139586002.65625,1921241867.9668765,2912788826.12519,991546958.158313
+1,Aguascalientes_aggregate(10),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes_aggregate(10),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Aguascalientes_aggregate(10),Tula Refinery,0.0,0.0,0.0,0.0
 1,Ahome,Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -743,10 +743,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Bahía de Banderas,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Bahía de Banderas,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Bahía de Banderas,Tula Refinery,0.0,0.0,0.0,0.0
-1,Baja California Sur_aggregate(5),Cadereyta Refinery,371620909.605353,5114937292.845887,8145584731.869638,3030647439.023751
+1,Baja California Sur_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Baja California Sur_aggregate(5),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Baja California Sur_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Baja California Sur_aggregate(5),Madero Refinery,101164349.394647,1392411702.4918816,2217428456.0943127,825016753.6024313
+1,Baja California Sur_aggregate(5),Madero Refinery,537021865.5,7391492501.960259,11775861342.799805,4384368840.839545
 1,Baja California Sur_aggregate(5),Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,Baja California Sur_aggregate(5),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Baja California Sur_aggregate(5),Salina Cruz Refinery,0.0,0.0,0.0,0.0
@@ -847,14 +847,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Chilpancingo de los Bravo,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Chilpancingo de los Bravo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Chilpancingo de los Bravo,Tula Refinery,0.0,0.0,0.0,0.0
-1,Ciudad de México_aggregate(14),Cadereyta Refinery,1033950850.29817,14231152301.887712,21850320774.771175,7619168472.883463
+1,Ciudad de México_aggregate(14),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Ciudad de México_aggregate(14),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Ciudad de México_aggregate(14),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Ciudad de México_aggregate(14),Madero Refinery,0.0,0.0,0.0,0.0
-1,Ciudad de México_aggregate(14),Minatitlan Refinery,0.0,0.0,0.0,0.0
+1,Ciudad de México_aggregate(14),Minatitlan Refinery,2205990092.23965,30362933566.972225,46764166783.07198,16401233216.09976
 1,Ciudad de México_aggregate(14),Salamanca Refinery,0.0,0.0,0.0,0.0
-1,Ciudad de México_aggregate(14),Salina Cruz Refinery,3029869404.70183,41702691129.570724,64029753812.096794,22327062682.52607
-1,Ciudad de México_aggregate(14),Tula Refinery,0.0,0.0,0.0,0.0
+1,Ciudad de México_aggregate(14),Salina Cruz Refinery,677246545.337185,9321525031.718271,14356760037.509203,5035235005.790932
+1,Ciudad de México_aggregate(14),Tula Refinery,1005863300.42316,13844559264.179136,21323014689.609875,7478455425.430738
 1,Coahuila de Zaragoza_aggregate(27),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Coahuila de Zaragoza_aggregate(27),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Coahuila de Zaragoza_aggregate(27),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -915,9 +915,9 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Durango_aggregate(26),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Durango_aggregate(26),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Durango_aggregate(26),Madero Refinery,0.0,0.0,0.0,0.0
-1,Durango_aggregate(26),Minatitlan Refinery,473307748.25,6514540462.988968,10049097759.309103,3534557296.320135
+1,Durango_aggregate(26),Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,Durango_aggregate(26),Salamanca Refinery,0.0,0.0,0.0,0.0
-1,Durango_aggregate(26),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+1,Durango_aggregate(26),Salina Cruz Refinery,451279832.25,6211351363.237478,9557488990.843193,3346137627.6057143
 1,Durango_aggregate(26),Tula Refinery,0.0,0.0,0.0,0.0
 1,Ecatepec de Morelos,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Ecatepec de Morelos,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -946,11 +946,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Guadalupe,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Guadalupe,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Guadalupe,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Guadalupe,Madero Refinery,378684266.6875,5212156334.127843,8065007965.548198,2852851631.420355
+1,Guadalupe,Madero Refinery,0.0,0.0,0.0,0.0
 1,Guadalupe,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Guadalupe,Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Guadalupe,Salamanca Refinery,189801253.917158,2612397437.2721863,4033119047.8122106,1420721610.540024
 1,Guadalupe,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-1,Guadalupe,Tula Refinery,0.0,0.0,0.0,0.0
+1,Guadalupe,Tula Refinery,223140256.332842,3071270720.1112876,4741545166.727314,1670274446.6160269
 1,Guanajuato_aggregate(39),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Guanajuato_aggregate(39),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Guanajuato_aggregate(39),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -962,18 +962,18 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Guerrero_aggregate(66),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Guerrero_aggregate(66),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Guerrero_aggregate(66),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Guerrero_aggregate(66),Madero Refinery,646115864.75,8893046776.13205,13828461437.826092,4935414661.694041
+1,Guerrero_aggregate(66),Madero Refinery,0.0,0.0,0.0,0.0
 1,Guerrero_aggregate(66),Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Guerrero_aggregate(66),Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Guerrero_aggregate(66),Salamanca Refinery,574239290.875,7903747846.247685,12251479706.209393,4347731859.961707
 1,Guerrero_aggregate(66),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Guerrero_aggregate(66),Tula Refinery,0.0,0.0,0.0,0.0
 1,Gustavo A. Madero,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Gustavo A. Madero,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Gustavo A. Madero,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Gustavo A. Madero,Madero Refinery,0.0,0.0,0.0,0.0
-1,Gustavo A. Madero,Minatitlan Refinery,809623564.239652,11143543473.627386,17124161852.045797,5980618378.418411
+1,Gustavo A. Madero,Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,Gustavo A. Madero,Salamanca Refinery,0.0,0.0,0.0,0.0
-1,Gustavo A. Madero,Salina Cruz Refinery,25751358.0103483,354438025.4825653,544661052.3167174,190223026.83415213
+1,Gustavo A. Madero,Salina Cruz Refinery,737338205.125,10148618081.902428,15580186934.774765,5431568852.872338
 1,Gustavo A. Madero,Tula Refinery,0.0,0.0,0.0,0.0
 1,Gómez Palacio,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Gómez Palacio,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -994,17 +994,17 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Hidalgo_aggregate(58),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Hidalgo_aggregate(58),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Hidalgo_aggregate(58),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Hidalgo_aggregate(58),Madero Refinery,0.0,0.0,0.0,0.0
+1,Hidalgo_aggregate(58),Madero Refinery,1064580693.39826,14652737101.604837,21612602044.69874,6959864943.093901
 1,Hidalgo_aggregate(58),Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,Hidalgo_aggregate(58),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Hidalgo_aggregate(58),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-1,Hidalgo_aggregate(58),Tula Refinery,1280783947.52326,17628527910.935204,25977972774.09726,8349444863.162056
-1,Irapuato,Cadereyta Refinery,297698550.318333,4097480463.8050585,6252898420.358643,2155417956.5535846
+1,Hidalgo_aggregate(58),Tula Refinery,0.0,0.0,0.0,0.0
+1,Irapuato,Cadereyta Refinery,336700331.0,4634295420.498177,7041309034.704673,2407013614.2064967
 1,Irapuato,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Irapuato,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Irapuato,Madero Refinery,0.0,0.0,0.0,0.0
 1,Irapuato,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Irapuato,Salamanca Refinery,166285637.619167,2288731842.420211,3492684797.0384207,1203952954.6182096
+1,Irapuato,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Irapuato,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Irapuato,Tula Refinery,0.0,0.0,0.0,0.0
 1,Iztapalapa,Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -1012,9 +1012,9 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Iztapalapa,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Iztapalapa,Madero Refinery,0.0,0.0,0.0,0.0
 1,Iztapalapa,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Iztapalapa,Salamanca Refinery,592794171.26725,8159134578.343577,12495620324.040508,4336485745.696931
-1,Iztapalapa,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-1,Iztapalapa,Tula Refinery,1032079314.48275,14205392749.371267,21755394845.57165,7550002096.200383
+1,Iztapalapa,Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Iztapalapa,Salina Cruz Refinery,1189756180.0,16375634678.195206,25059790537.186108,8684155858.990904
+1,Iztapalapa,Tula Refinery,0.0,0.0,0.0,0.0
 1,Jalisco_aggregate(106),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Jalisco_aggregate(106),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Jalisco_aggregate(106),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1039,7 +1039,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Juárez,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Juárez,Tula Refinery,0.0,0.0,0.0,0.0
-1,León,Cadereyta Refinery,897878734.625,12358275074.090542,18536012583.37312,6177737509.2825775
+1,León,Cadereyta Refinery,995207989.0,13697901074.727186,20513961034.000446,6816059959.273258
 1,León,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,León,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,León,Madero Refinery,0.0,0.0,0.0,0.0
@@ -1074,9 +1074,9 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Monterrey,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,Monterrey,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Monterrey,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Monterrey,Madero Refinery,766262721.875,10546731012.520983,16335348076.67597,5788617064.154987
+1,Monterrey,Madero Refinery,0.0,0.0,0.0,0.0
 1,Monterrey,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Monterrey,Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Monterrey,Salamanca Refinery,747164560.0,10283866631.44247,16002865778.12218,5718999146.67971
 1,Monterrey,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Monterrey,Tula Refinery,0.0,0.0,0.0,0.0
 1,Morelia,Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -1099,10 +1099,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Mérida,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Mérida,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Mérida,Madero Refinery,0.0,0.0,0.0,0.0
-1,Mérida,Minatitlan Refinery,923058779.75,12704849630.355902,19524233686.395733,6819384056.03983
+1,Mérida,Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,Mérida,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Mérida,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-1,Mérida,Tula Refinery,0.0,0.0,0.0,0.0
+1,Mérida,Tula Refinery,1083859705.25,14918090676.015932,23023260631.63936,8105169955.623426
 1,México_aggregate(117),Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,México_aggregate(117),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,México_aggregate(117),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1234,7 +1234,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,San Luis Potosí,Cadereyta Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,San Luis Potosí,Madero Refinery,0.0,0.0,0.0,0.0
+1,San Luis Potosí,Madero Refinery,545339622.25,7505976921.684049,11081373554.126402,3575396632.4423537
 1,San Luis Potosí,Minatitlan Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí,Salina Cruz Refinery,0.0,0.0,0.0,0.0
@@ -1247,12 +1247,12 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,San Luis Potosí_aggregate(40),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí_aggregate(40),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,San Luis Potosí_aggregate(40),Tula Refinery,0.0,0.0,0.0,0.0
-1,Sinaloa_aggregate(15),Cadereyta Refinery,0.0,0.0,0.0,0.0
+1,Sinaloa_aggregate(15),Cadereyta Refinery,516882502.375,7114297175.110589,10793059558.576612,3678762383.4660244
 1,Sinaloa_aggregate(15),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Sinaloa_aggregate(15),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Sinaloa_aggregate(15),Madero Refinery,0.0,0.0,0.0,0.0
 1,Sinaloa_aggregate(15),Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Sinaloa_aggregate(15),Salamanca Refinery,529702951.1875,7290756007.342922,10985991381.498226,3695235374.1553035
+1,Sinaloa_aggregate(15),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Sinaloa_aggregate(15),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Sinaloa_aggregate(15),Tula Refinery,0.0,0.0,0.0,0.0
 1,Soledad de Graciano Sánchez,Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -1271,12 +1271,12 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Solidaridad,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Solidaridad,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Solidaridad,Tula Refinery,0.0,0.0,0.0,0.0
-1,Sonora_aggregate(30),Cadereyta Refinery,0.0,0.0,0.0,0.0
+1,Sonora_aggregate(30),Cadereyta Refinery,679994433.875,9359346578.34109,14217508688.931286,4858162110.590195
 1,Sonora_aggregate(30),Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Sonora_aggregate(30),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 1,Sonora_aggregate(30),Madero Refinery,0.0,0.0,0.0,0.0
 1,Sonora_aggregate(30),Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Sonora_aggregate(30),Salamanca Refinery,530775141.3125,7305513479.577753,11062224003.250738,3756710523.6729856
+1,Sonora_aggregate(30),Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Sonora_aggregate(30),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Sonora_aggregate(30),Tula Refinery,0.0,0.0,0.0,0.0
 1,Tabasco_aggregate(15),Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -1335,12 +1335,12 @@ T,loc,plant,sales,freight,revenue,ebitda
 1,Tuxtla Gutiérrez,Salamanca Refinery,0.0,0.0,0.0,0.0
 1,Tuxtla Gutiérrez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Tuxtla Gutiérrez,Tula Refinery,0.0,0.0,0.0,0.0
-1,Veracruz,Cadereyta Refinery,514062092.125,7075477449.966033,10584979745.18658,3509502295.2205477
+1,Veracruz,Cadereyta Refinery,338086850.940603,4653379283.564429,6950752671.304613,2297373387.7401843
 1,Veracruz,Cangrejera Refinery,0.0,0.0,0.0,0.0
 1,Veracruz,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-1,Veracruz,Madero Refinery,0.0,0.0,0.0,0.0
+1,Veracruz,Madero Refinery,7653039.74638891,105335349.520582,157339412.38122445,52004062.86064245
 1,Veracruz,Minatitlan Refinery,0.0,0.0,0.0,0.0
-1,Veracruz,Salamanca Refinery,0.0,0.0,0.0,0.0
+1,Veracruz,Salamanca Refinery,116662238.563008,1605722442.6001937,2398467624.7425714,792745182.1423779
 1,Veracruz,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 1,Veracruz,Tula Refinery,0.0,0.0,0.0,0.0
 1,Veracruz de Ignacio de la Llave_aggregate(167),Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -1394,7 +1394,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Acapulco de Juárez,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Acapulco de Juárez,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Acapulco de Juárez,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Acapulco de Juárez,Madero Refinery,248983330.34375,3426971111.568124,5850438246.460297,2423467134.8921733
+2,Acapulco de Juárez,Madero Refinery,360484564.9375,4961658230.2977705,8508769446.413026,3547111216.1152554
 2,Acapulco de Juárez,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Acapulco de Juárez,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Acapulco de Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
@@ -1405,9 +1405,9 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Aguascalientes,Madero Refinery,0.0,0.0,0.0,0.0
 2,Aguascalientes,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Aguascalientes,Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Aguascalientes,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,Aguascalientes,Tula Refinery,461260510.375,6348723996.019814,10181636701.110407,3832912705.090593
-2,Aguascalientes_aggregate(10),Cadereyta Refinery,123496271.234375,1699785095.340654,2763918568.767115,1064133473.4264612
+2,Aguascalientes,Salina Cruz Refinery,574571936.125,7908326328.110614,12676165746.06039,4767839417.949778
+2,Aguascalientes,Tula Refinery,0.0,0.0,0.0,0.0
+2,Aguascalientes_aggregate(10),Cadereyta Refinery,178185071.6875,2452513958.8369474,4009607298.1134243,1557093339.2764773
 2,Aguascalientes_aggregate(10),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Aguascalientes_aggregate(10),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Aguascalientes_aggregate(10),Madero Refinery,0.0,0.0,0.0,0.0
@@ -1442,7 +1442,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Baja California Sur_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Baja California Sur_aggregate(5),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Baja California Sur_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Baja California Sur_aggregate(5),Madero Refinery,467300775.4375,6431861344.3990135,11133291845.752224,4701430501.35321
+2,Baja California Sur_aggregate(5),Madero Refinery,567605488.375,7812441133.079532,13531130327.15603,5718689194.076499
 2,Baja California Sur_aggregate(5),Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Baja California Sur_aggregate(5),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Baja California Sur_aggregate(5),Salina Cruz Refinery,0.0,0.0,0.0,0.0
@@ -1546,11 +1546,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Ciudad de México_aggregate(14),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Ciudad de México_aggregate(14),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Ciudad de México_aggregate(14),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Ciudad de México_aggregate(14),Madero Refinery,102335441.859559,1408530452.4527233,2336160432.5121183,927629980.059395
-2,Ciudad de México_aggregate(14),Minatitlan Refinery,1932764789.52882,26602299399.02712,44122041636.82007,17519742237.792946
-2,Ciudad de México_aggregate(14),Salamanca Refinery,2135134402.91216,29387685946.658398,48741828046.476074,19354142099.817677
-2,Ciudad de México_aggregate(14),Salina Cruz Refinery,280357940.699467,3858806781.7606015,6400139737.526278,2541332955.7656765
-2,Ciudad de México_aggregate(14),Tula Refinery,0.0,0.0,0.0,0.0
+2,Ciudad de México_aggregate(14),Madero Refinery,654830499.019812,9012993761.535833,15030604802.889978,6017611041.354146
+2,Ciudad de México_aggregate(14),Minatitlan Refinery,0.0,0.0,0.0,0.0
+2,Ciudad de México_aggregate(14),Salamanca Refinery,2135134402.91216,29387685946.658398,49008654085.69826,19620968139.039864
+2,Ciudad de México_aggregate(14),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+2,Ciudad de México_aggregate(14),Tula Refinery,1547252798.06803,21296167233.169907,35514755914.29756,14218588681.127657
 2,Coahuila de Zaragoza_aggregate(27),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Coahuila de Zaragoza_aggregate(27),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Coahuila de Zaragoza_aggregate(27),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1610,8 +1610,8 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Durango_aggregate(26),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Durango_aggregate(26),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Durango_aggregate(26),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Durango_aggregate(26),Madero Refinery,529484367.5,7287747452.587516,12095621555.587105,4807874102.999589
-2,Durango_aggregate(26),Minatitlan Refinery,0.0,0.0,0.0,0.0
+2,Durango_aggregate(26),Madero Refinery,0.0,0.0,0.0,0.0
+2,Durango_aggregate(26),Minatitlan Refinery,498316891.875,6858762755.33925,11350753757.728928,4491991002.389678
 2,Durango_aggregate(26),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Durango_aggregate(26),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Durango_aggregate(26),Tula Refinery,0.0,0.0,0.0,0.0
@@ -1639,7 +1639,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Guadalajara,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Guadalajara,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Guadalajara,Tula Refinery,0.0,0.0,0.0,0.0
-2,Guadalupe,Cadereyta Refinery,399944453.1875,5504778514.341521,9065996094.122177,3561217579.7806563
+2,Guadalupe,Cadereyta Refinery,451836617.875,6219014881.311468,10206657170.126059,3987642288.814591
 2,Guadalupe,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Guadalupe,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Guadalupe,Madero Refinery,0.0,0.0,0.0,0.0
@@ -1655,22 +1655,22 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Guanajuato_aggregate(39),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Guanajuato_aggregate(39),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Guanajuato_aggregate(39),Tula Refinery,0.0,0.0,0.0,0.0
-2,Guerrero_aggregate(66),Cadereyta Refinery,0.0,0.0,0.0,0.0
+2,Guerrero_aggregate(66),Cadereyta Refinery,642178467.25,8838852997.501844,14565780864.326412,5726927866.824569
 2,Guerrero_aggregate(66),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Guerrero_aggregate(66),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Guerrero_aggregate(66),Madero Refinery,0.0,0.0,0.0,0.0
 2,Guerrero_aggregate(66),Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Guerrero_aggregate(66),Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Guerrero_aggregate(66),Salina Cruz Refinery,801046532.625,11025490431.578995,18201001632.70125,7175511201.122252
+2,Guerrero_aggregate(66),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Guerrero_aggregate(66),Tula Refinery,0.0,0.0,0.0,0.0
 2,Gustavo A. Madero,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Gustavo A. Madero,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Gustavo A. Madero,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Gustavo A. Madero,Madero Refinery,999984907.625,13763649902.600866,22837802961.268486,9074153058.66762
-2,Gustavo A. Madero,Minatitlan Refinery,0.0,0.0,0.0,0.0
+2,Gustavo A. Madero,Madero Refinery,0.0,0.0,0.0,0.0
+2,Gustavo A. Madero,Minatitlan Refinery,671816016.777904,9246780009.76235,15326446643.16868,6079666633.406329
 2,Gustavo A. Madero,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Gustavo A. Madero,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,Gustavo A. Madero,Tula Refinery,0.0,0.0,0.0,0.0
+2,Gustavo A. Madero,Tula Refinery,145270911.222096,1999488140.1175594,3314131866.5315533,1314643726.413994
 2,Gómez Palacio,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Gómez Palacio,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Gómez Palacio,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1687,15 +1687,15 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Hermosillo,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Hermosillo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Hermosillo,Tula Refinery,0.0,0.0,0.0,0.0
-2,Hidalgo_aggregate(58),Cadereyta Refinery,268083715.703241,3689866096.3706174,5861675904.221975,2171809807.8513584
+2,Hidalgo_aggregate(58),Cadereyta Refinery,136470115.000117,1878355233.8708622,2993341599.32484,1114986365.453978
 2,Hidalgo_aggregate(58),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Hidalgo_aggregate(58),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-2,Hidalgo_aggregate(58),Madero Refinery,0.0,0.0,0.0,0.0
-2,Hidalgo_aggregate(58),Minatitlan Refinery,471321430.374089,6487201066.533228,10305487837.334661,3818286770.8014336
+2,Hidalgo_aggregate(58),Madero Refinery,765168270.433497,10531667138.695107,16783235028.19692,6251567889.501814
+2,Hidalgo_aggregate(58),Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Hidalgo_aggregate(58),Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Hidalgo_aggregate(58),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,Hidalgo_aggregate(58),Tula Refinery,636254271.415125,8757313209.44712,13911760070.651913,5154446861.204793
-2,Irapuato,Cadereyta Refinery,665511836.375,9160010168.210955,15057076058.185669,5897065889.974713
+2,Hidalgo_aggregate(58),Salina Cruz Refinery,511033324.949468,7033789929.761833,11209027780.26691,4175237850.5050764
+2,Hidalgo_aggregate(58),Tula Refinery,0.0,0.0,0.0,0.0
+2,Irapuato,Cadereyta Refinery,392027276.4375,5395807620.707919,8810424374.516562,3414616753.8086424
 2,Irapuato,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Irapuato,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Irapuato,Madero Refinery,0.0,0.0,0.0,0.0
@@ -1703,13 +1703,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Irapuato,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Irapuato,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Irapuato,Tula Refinery,0.0,0.0,0.0,0.0
-2,Iztapalapa,Cadereyta Refinery,0.0,0.0,0.0,0.0
+2,Iztapalapa,Cadereyta Refinery,1349450753.75,18573648055.87743,30643260489.21053,12069612433.3331
 2,Iztapalapa,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Iztapalapa,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Iztapalapa,Madero Refinery,0.0,0.0,0.0,0.0
 2,Iztapalapa,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Iztapalapa,Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Iztapalapa,Salina Cruz Refinery,2248398745.75,30946640236.249332,51031952336.81611,20085312100.566772
+2,Iztapalapa,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Iztapalapa,Tula Refinery,0.0,0.0,0.0,0.0
 2,Jalisco_aggregate(106),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Jalisco_aggregate(106),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -1741,8 +1741,8 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,León,Madero Refinery,0.0,0.0,0.0,0.0
 2,León,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,León,Salamanca Refinery,0.0,0.0,0.0,0.0
-2,León,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,León,Tula Refinery,916033991.0,12608161438.106718,20167684446.121574,7559523008.014856
+2,León,Salina Cruz Refinery,1098080775.25,15113827458.86924,24131269601.76199,9017442142.892748
+2,León,Tula Refinery,0.0,0.0,0.0,0.0
 2,Matamoros,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Matamoros,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Matamoros,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1767,14 +1767,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Michoacán de Ocampo_aggregate(102),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Michoacán de Ocampo_aggregate(102),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Michoacán de Ocampo_aggregate(102),Tula Refinery,0.0,0.0,0.0,0.0
-2,Monterrey,Cadereyta Refinery,868401284.5,11952551647.21856,19700923359.40177,7748371712.183212
+2,Monterrey,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Madero Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Monterrey,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,Monterrey,Tula Refinery,0.0,0.0,0.0,0.0
+2,Monterrey,Tula Refinery,828006412.0,11396562373.069738,18944967837.130722,7548405464.060984
 2,Morelia,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Morelia,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Morelia,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -1791,11 +1791,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Morelos_aggregate(32),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Morelos_aggregate(32),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Morelos_aggregate(32),Tula Refinery,0.0,0.0,0.0,0.0
-2,Mérida,Cadereyta Refinery,938203705.875,12913302237.38607,21187400889.221268,8274098651.835197
+2,Mérida,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Mérida,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Mérida,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Mérida,Madero Refinery,0.0,0.0,0.0,0.0
-2,Mérida,Minatitlan Refinery,0.0,0.0,0.0,0.0
+2,Mérida,Minatitlan Refinery,1233953311.25,16983957700.458677,28047347265.24899,11063389564.79031
 2,Mérida,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Mérida,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Mérida,Tula Refinery,0.0,0.0,0.0,0.0
@@ -1949,7 +1949,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Sinaloa_aggregate(15),Madero Refinery,0.0,0.0,0.0,0.0
 2,Sinaloa_aggregate(15),Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Sinaloa_aggregate(15),Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Sinaloa_aggregate(15),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+2,Sinaloa_aggregate(15),Salina Cruz Refinery,600437637.875,8264338164.5468445,13230621334.85688,4966283170.310036
 2,Sinaloa_aggregate(15),Tula Refinery,0.0,0.0,0.0,0.0
 2,Soledad de Graciano Sánchez,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Soledad de Graciano Sánchez,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -1967,14 +1967,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Solidaridad,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Solidaridad,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Solidaridad,Tula Refinery,0.0,0.0,0.0,0.0
-2,Sonora_aggregate(30),Cadereyta Refinery,0.0,0.0,0.0,0.0
+2,Sonora_aggregate(30),Cadereyta Refinery,757147318.124999,10421267893.048668,16921141113.18116,6499873220.132493
 2,Sonora_aggregate(30),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Sonora_aggregate(30),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Sonora_aggregate(30),Madero Refinery,0.0,0.0,0.0,0.0
 2,Sonora_aggregate(30),Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Sonora_aggregate(30),Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Sonora_aggregate(30),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-2,Sonora_aggregate(30),Tula Refinery,506981348.5,6978019102.783537,11227345852.754454,4249326749.9709163
+2,Sonora_aggregate(30),Tula Refinery,0.0,0.0,0.0,0.0
 2,Tabasco_aggregate(15),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Tabasco_aggregate(15),Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Tabasco_aggregate(15),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2031,13 +2031,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 2,Tuxtla Gutiérrez,Salamanca Refinery,0.0,0.0,0.0,0.0
 2,Tuxtla Gutiérrez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 2,Tuxtla Gutiérrez,Tula Refinery,0.0,0.0,0.0,0.0
-2,Veracruz,Cadereyta Refinery,643654353.25,8859166882.28676,14288154667.323486,5428987785.036725
+2,Veracruz,Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Veracruz,Cangrejera Refinery,0.0,0.0,0.0,0.0
 2,Veracruz,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 2,Veracruz,Madero Refinery,0.0,0.0,0.0,0.0
 2,Veracruz,Minatitlan Refinery,0.0,0.0,0.0,0.0
 2,Veracruz,Salamanca Refinery,0.0,0.0,0.0,0.0
-2,Veracruz,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+2,Veracruz,Salina Cruz Refinery,545679544.875,7510655568.300411,12098424592.30947,4587769024.009059
 2,Veracruz,Tula Refinery,0.0,0.0,0.0,0.0
 2,Veracruz de Ignacio de la Llave_aggregate(167),Cadereyta Refinery,0.0,0.0,0.0,0.0
 2,Veracruz de Ignacio de la Llave_aggregate(167),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -2090,11 +2090,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Acapulco de Juárez,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Acapulco de Juárez,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Acapulco de Juárez,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-3,Acapulco de Juárez,Madero Refinery,0.0,0.0,0.0,0.0
+3,Acapulco de Juárez,Madero Refinery,394524732.5,5430182250.394099,10073475580.636734,4643293330.242635
 3,Acapulco de Juárez,Minatitlan Refinery,0.0,0.0,0.0,0.0
 3,Acapulco de Juárez,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Acapulco de Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-3,Acapulco de Juárez,Tula Refinery,233855994.0625,3218760608.643098,5942684578.098451,2723923969.4553533
+3,Acapulco de Juárez,Tula Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2103,7 +2103,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Aguascalientes,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes,Tula Refinery,0.0,0.0,0.0,0.0
-3,Aguascalientes_aggregate(10),Cadereyta Refinery,109975965.484375,1513693531.857872,2650148252.577399,1136454720.7195265
+3,Aguascalientes_aggregate(10),Cadereyta Refinery,183151176.96875,2520866724.9131074,4439797388.344747,1918930663.431639
 3,Aguascalientes_aggregate(10),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes_aggregate(10),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Aguascalientes_aggregate(10),Madero Refinery,0.0,0.0,0.0,0.0
@@ -2138,11 +2138,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Baja California Sur_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Baja California Sur_aggregate(5),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Baja California Sur_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-3,Baja California Sur_aggregate(5),Madero Refinery,0.0,0.0,0.0,0.0
+3,Baja California Sur_aggregate(5),Madero Refinery,601175698.0,8274496719.031128,15599186942.030088,7324690222.998961
 3,Baja California Sur_aggregate(5),Minatitlan Refinery,0.0,0.0,0.0,0.0
 3,Baja California Sur_aggregate(5),Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Baja California Sur_aggregate(5),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-3,Baja California Sur_aggregate(5),Tula Refinery,453650604.6875,6243982337.544865,11763020349.887384,5519038012.342519
+3,Baja California Sur_aggregate(5),Tula Refinery,0.0,0.0,0.0,0.0
 3,Baja California_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Baja California_aggregate(5),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Baja California_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2242,11 +2242,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Ciudad de México_aggregate(14),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Ciudad de México_aggregate(14),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Ciudad de México_aggregate(14),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-3,Ciudad de México_aggregate(14),Madero Refinery,2110618366.72687,29050250714.905518,52155618379.820915,23105367664.915394
+3,Ciudad de México_aggregate(14),Madero Refinery,1358821512.32818,18702625842.85042,33832178068.52392,15129552225.673498
 3,Ciudad de México_aggregate(14),Minatitlan Refinery,0.0,0.0,0.0,0.0
-3,Ciudad de México_aggregate(14),Salamanca Refinery,950984969.256865,13089221726.9299,23499847212.27686,10410625485.34696
+3,Ciudad de México_aggregate(14),Salamanca Refinery,2140984086.20781,29468200154.731438,53306600012.79434,23838399858.062904
 3,Ciudad de México_aggregate(14),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-3,Ciudad de México_aggregate(14),Tula Refinery,1839929084.51626,25324521972.07702,45466599121.27146,20142077149.19444
+3,Ciudad de México_aggregate(14),Tula Refinery,1361331598.46401,18737174311.067795,33894674636.575176,15157500325.507381
 3,Coahuila de Zaragoza_aggregate(27),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Coahuila de Zaragoza_aggregate(27),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Coahuila de Zaragoza_aggregate(27),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2307,7 +2307,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Durango_aggregate(26),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Durango_aggregate(26),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Durango_aggregate(26),Madero Refinery,0.0,0.0,0.0,0.0
-3,Durango_aggregate(26),Minatitlan Refinery,613495752.0625,8444068189.16471,15089447898.249048,6645379709.084339
+3,Durango_aggregate(26),Minatitlan Refinery,551783893.375,7594674951.989924,13559824255.203846,5965149303.213922
 3,Durango_aggregate(26),Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Durango_aggregate(26),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Durango_aggregate(26),Tula Refinery,0.0,0.0,0.0,0.0
@@ -2335,7 +2335,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Guadalajara,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Guadalajara,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Guadalajara,Tula Refinery,0.0,0.0,0.0,0.0
-3,Guadalupe,Cadereyta Refinery,415398693.375,5717488476.091485,10016312986.080063,4298824509.988578
+3,Guadalupe,Cadereyta Refinery,494900737.5,6811743292.873152,11921983632.494465,5110240339.621313
 3,Guadalupe,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Guadalupe,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Guadalupe,Madero Refinery,0.0,0.0,0.0,0.0
@@ -2351,7 +2351,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Guanajuato_aggregate(39),Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Guanajuato_aggregate(39),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Guanajuato_aggregate(39),Tula Refinery,0.0,0.0,0.0,0.0
-3,Guerrero_aggregate(66),Cadereyta Refinery,998119723.5,13737977773.847082,24136144988.90703,10398167215.059946
+3,Guerrero_aggregate(66),Cadereyta Refinery,718582085.375,9890461519.936527,17366445165.366512,7475983645.429984
 3,Guerrero_aggregate(66),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Guerrero_aggregate(66),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Guerrero_aggregate(66),Madero Refinery,0.0,0.0,0.0,0.0
@@ -2363,10 +2363,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Gustavo A. Madero,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Gustavo A. Madero,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Gustavo A. Madero,Madero Refinery,0.0,0.0,0.0,0.0
-3,Gustavo A. Madero,Minatitlan Refinery,16795336.0490565,231168614.25915995,414950776.1234747,183782161.86431476
-3,Gustavo A. Madero,Salamanca Refinery,1189999116.95094,16378978427.80147,29400486880.569527,13021508452.768057
+3,Gustavo A. Madero,Minatitlan Refinery,0.0,0.0,0.0,0.0
+3,Gustavo A. Madero,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Gustavo A. Madero,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-3,Gustavo A. Madero,Tula Refinery,0.0,0.0,0.0,0.0
+3,Gustavo A. Madero,Tula Refinery,909247511.0,12514753293.564968,22422818119.82949,9908064826.26452
 3,Gómez Palacio,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Gómez Palacio,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Gómez Palacio,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2383,29 +2383,29 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Hermosillo,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Hermosillo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Hermosillo,Tula Refinery,0.0,0.0,0.0,0.0
-3,Hidalgo_aggregate(58),Cadereyta Refinery,616542630.897933,8486004995.677264,14564660328.511633,6078655332.83437
+3,Hidalgo_aggregate(58),Cadereyta Refinery,575326256.663558,7918708688.612145,13668608755.272564,5749900066.660418
 3,Hidalgo_aggregate(58),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Hidalgo_aggregate(58),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-3,Hidalgo_aggregate(58),Madero Refinery,243903576.101309,3357054097.370117,5761763357.143975,2404709259.773858
+3,Hidalgo_aggregate(58),Madero Refinery,0.0,0.0,0.0,0.0
 3,Hidalgo_aggregate(58),Minatitlan Refinery,0.0,0.0,0.0,0.0
 3,Hidalgo_aggregate(58),Salamanca Refinery,0.0,0.0,0.0,0.0
-3,Hidalgo_aggregate(58),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-3,Hidalgo_aggregate(58),Tula Refinery,0.0,0.0,0.0,0.0
-3,Irapuato,Cadereyta Refinery,0.0,0.0,0.0,0.0
+3,Hidalgo_aggregate(58),Salina Cruz Refinery,1346985031.23656,18539710202.24267,32001688047.32276,13461977845.080095
+3,Hidalgo_aggregate(58),Tula Refinery,256856573.802252,3535337313.6322465,6102401850.878638,2567064537.246392
+3,Irapuato,Cadereyta Refinery,457583421.0,6298113061.362535,11073913000.234316,4775799938.871781
 3,Irapuato,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Irapuato,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Irapuato,Madero Refinery,0.0,0.0,0.0,0.0
 3,Irapuato,Minatitlan Refinery,0.0,0.0,0.0,0.0
 3,Irapuato,Salamanca Refinery,0.0,0.0,0.0,0.0
-3,Irapuato,Salina Cruz Refinery,989185857.5,13615013314.120596,24047521518.18652,10432508204.065924
+3,Irapuato,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Irapuato,Tula Refinery,0.0,0.0,0.0,0.0
 3,Iztapalapa,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Iztapalapa,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Iztapalapa,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Iztapalapa,Madero Refinery,0.0,0.0,0.0,0.0
-3,Iztapalapa,Minatitlan Refinery,1780381669.38012,24504919827.795444,43609088917.64623,19104169089.85079
+3,Iztapalapa,Minatitlan Refinery,942577228.366679,12973498778.311459,23054108094.89428,10080609316.582819
 3,Iztapalapa,Salamanca Refinery,0.0,0.0,0.0,0.0
-3,Iztapalapa,Salina Cruz Refinery,1381049737.86988,19008571974.61618,33827758313.9961,14819186339.379921
+3,Iztapalapa,Salina Cruz Refinery,586570150.383321,8073468040.999197,14346677646.359234,6273209605.360036
 3,Iztapalapa,Tula Refinery,0.0,0.0,0.0,0.0
 3,Jalisco_aggregate(106),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Jalisco_aggregate(106),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -2467,9 +2467,9 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Monterrey,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Monterrey,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Monterrey,Madero Refinery,0.0,0.0,0.0,0.0
-3,Monterrey,Minatitlan Refinery,0.0,0.0,0.0,0.0
+3,Monterrey,Minatitlan Refinery,916311635.75,12611982900.917963,22488087330.260365,9876104429.342402
 3,Monterrey,Salamanca Refinery,0.0,0.0,0.0,0.0
-3,Monterrey,Salina Cruz Refinery,968690372.25,13332916373.042854,23452035612.829212,10119119239.786358
+3,Monterrey,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Monterrey,Tula Refinery,0.0,0.0,0.0,0.0
 3,Morelia,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Morelia,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -2487,13 +2487,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Morelos_aggregate(32),Salamanca Refinery,0.0,0.0,0.0,-0.0
 3,Morelos_aggregate(32),Salina Cruz Refinery,0.0,0.0,0.0,-0.0
 3,Morelos_aggregate(32),Tula Refinery,0.0,0.0,0.0,-0.0
-3,Mérida,Cadereyta Refinery,958361540.75,13190751806.772953,23097018378.93855,9906266572.165596
+3,Mérida,Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,Mérida,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Mérida,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Mérida,Madero Refinery,0.0,0.0,0.0,0.0
 3,Mérida,Minatitlan Refinery,0.0,0.0,0.0,0.0
 3,Mérida,Salamanca Refinery,0.0,0.0,0.0,0.0
-3,Mérida,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+3,Mérida,Salina Cruz Refinery,1405370786.0,19343323418.53778,34199675110.080227,14856351691.542444
 3,Mérida,Tula Refinery,0.0,0.0,0.0,0.0
 3,México_aggregate(117),Cadereyta Refinery,0.0,0.0,0.0,0.0
 3,México_aggregate(117),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -2663,7 +2663,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Solidaridad,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Solidaridad,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Solidaridad,Tula Refinery,0.0,0.0,0.0,0.0
-3,Sonora_aggregate(30),Cadereyta Refinery,0.0,0.0,0.0,0.0
+3,Sonora_aggregate(30),Cadereyta Refinery,842355009.5,11594054426.277199,20123078402.65099,8529023976.373793
 3,Sonora_aggregate(30),Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Sonora_aggregate(30),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Sonora_aggregate(30),Madero Refinery,0.0,0.0,0.0,0.0
@@ -2727,7 +2727,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 3,Tuxtla Gutiérrez,Salamanca Refinery,0.0,0.0,0.0,0.0
 3,Tuxtla Gutiérrez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 3,Tuxtla Gutiérrez,Tula Refinery,0.0,0.0,0.0,0.0
-3,Veracruz,Cadereyta Refinery,819601985.625,11280885044.966438,19632276947.99439,8351391903.027951
+3,Veracruz,Cadereyta Refinery,646101852.625,8892853915.23843,15446511576.13908,6553657660.900651
 3,Veracruz,Cangrejera Refinery,0.0,0.0,0.0,0.0
 3,Veracruz,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 3,Veracruz,Madero Refinery,0.0,0.0,0.0,0.0
@@ -2786,11 +2786,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Acapulco de Juárez,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Acapulco de Juárez,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Acapulco de Juárez,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Acapulco de Juárez,Madero Refinery,0.0,0.0,0.0,0.0
+4,Acapulco de Juárez,Madero Refinery,430403479.875,5924012221.274566,11861581212.64996,5937568991.375394
 4,Acapulco de Juárez,Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Acapulco de Juárez,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Acapulco de Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Acapulco de Juárez,Tula Refinery,231379180.65625,3184670101.538687,6347405266.085513,3162735164.546826
+4,Acapulco de Juárez,Tula Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -2799,13 +2799,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Aguascalientes,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes,Tula Refinery,0.0,0.0,0.0,0.0
-4,Aguascalientes_aggregate(10),Cadereyta Refinery,100180577.835938,1378871210.815497,2595659756.458518,1216788545.643021
+4,Aguascalientes_aggregate(10),Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes_aggregate(10),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes_aggregate(10),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes_aggregate(10),Madero Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes_aggregate(10),Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Aguascalientes_aggregate(10),Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Aguascalientes_aggregate(10),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+4,Aguascalientes_aggregate(10),Salina Cruz Refinery,187955207.0625,2586988711.1828537,4901705641.438565,2314716930.2557116
 4,Aguascalientes_aggregate(10),Tula Refinery,0.0,0.0,0.0,0.0
 4,Ahome,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Ahome,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -2831,10 +2831,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Bahía de Banderas,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Bahía de Banderas,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Bahía de Banderas,Tula Refinery,0.0,0.0,0.0,0.0
-4,Baja California Sur_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
+4,Baja California Sur_aggregate(5),Cadereyta Refinery,634833162.25,8737753265.218948,17905980677.113056,9168227411.894108
 4,Baja California Sur_aggregate(5),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Baja California Sur_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Baja California Sur_aggregate(5),Madero Refinery,434311617.59375,5977803272.441306,12241659589.733864,6263856317.292559
+4,Baja California Sur_aggregate(5),Madero Refinery,0.0,0.0,0.0,0.0
 4,Baja California Sur_aggregate(5),Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Baja California Sur_aggregate(5),Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Baja California Sur_aggregate(5),Salina Cruz Refinery,0.0,0.0,0.0,0.0
@@ -2935,14 +2935,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Chilpancingo de los Bravo,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Chilpancingo de los Bravo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Chilpancingo de los Bravo,Tula Refinery,0.0,0.0,0.0,0.0
-4,Ciudad de México_aggregate(14),Cadereyta Refinery,0.0,0.0,0.0,0.0
+4,Ciudad de México_aggregate(14),Cadereyta Refinery,454217367.156907,6251783175.484888,12245282351.415995,5993499175.931107
 4,Ciudad de México_aggregate(14),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Ciudad de México_aggregate(14),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Ciudad de México_aggregate(14),Madero Refinery,1093807247.95397,15055007237.580637,29257616602.919285,14202609365.338648
+4,Ciudad de México_aggregate(14),Madero Refinery,1917685342.89081,26394748042.33369,51699032628.04574,25304284585.712048
 4,Ciudad de México_aggregate(14),Minatitlan Refinery,0.0,0.0,0.0,0.0
-4,Ciudad de México_aggregate(14),Salamanca Refinery,2135134402.91216,29387685946.658398,57111473591.85885,27723787645.200455
+4,Ciudad de México_aggregate(14),Salamanca Refinery,2135134402.91216,29387685946.658398,57561259239.23476,28173573292.57636
 4,Ciudad de México_aggregate(14),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Ciudad de México_aggregate(14),Tula Refinery,2289150940.63388,31507547644.818573,61231172761.52533,29723625116.70676
+4,Ciudad de México_aggregate(14),Tula Refinery,905548636.040125,12463842505.219044,24412758148.502136,11948915643.283094
 4,Coahuila de Zaragoza_aggregate(27),Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Coahuila de Zaragoza_aggregate(27),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Coahuila de Zaragoza_aggregate(27),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3003,10 +3003,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Durango_aggregate(26),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Durango_aggregate(26),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Durango_aggregate(26),Madero Refinery,0.0,0.0,0.0,0.0
-4,Durango_aggregate(26),Minatitlan Refinery,714918578.4375,9840037532.015293,18939937760.0101,9099900227.994806
+4,Durango_aggregate(26),Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Durango_aggregate(26),Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Durango_aggregate(26),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Durango_aggregate(26),Tula Refinery,0.0,0.0,0.0,0.0
+4,Durango_aggregate(26),Tula Refinery,609829669.75,8393608754.148626,16137056221.402771,7743447467.254144
 4,Ecatepec de Morelos,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Ecatepec de Morelos,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Ecatepec de Morelos,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3047,7 +3047,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Guanajuato_aggregate(39),Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Guanajuato_aggregate(39),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Guanajuato_aggregate(39),Tula Refinery,0.0,0.0,0.0,0.0
-4,Guerrero_aggregate(66),Cadereyta Refinery,0.0,0.0,0.0,0.0
+4,Guerrero_aggregate(66),Cadereyta Refinery,800168625.375,11013407041.175982,20590582011.127296,9577174969.951315
 4,Guerrero_aggregate(66),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Guerrero_aggregate(66),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Guerrero_aggregate(66),Madero Refinery,0.0,0.0,0.0,0.0
@@ -3058,11 +3058,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Gustavo A. Madero,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Gustavo A. Madero,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Gustavo A. Madero,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Gustavo A. Madero,Madero Refinery,819969957.218093,11285949753.586355,21879634752.449245,10593684998.86289
-4,Gustavo A. Madero,Minatitlan Refinery,625390038.781907,8607779458.203646,16687569472.412695,8079790014.209049
+4,Gustavo A. Madero,Madero Refinery,0.0,0.0,0.0,0.0
+4,Gustavo A. Madero,Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Gustavo A. Madero,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Gustavo A. Madero,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Gustavo A. Madero,Tula Refinery,0.0,0.0,0.0,0.0
+4,Gustavo A. Madero,Tula Refinery,1005151815.5,13834766486.989517,26771305120.534286,12936538633.54477
 4,Gómez Palacio,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Gómez Palacio,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Gómez Palacio,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3079,7 +3079,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Hermosillo,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Hermosillo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Hermosillo,Tula Refinery,0.0,0.0,0.0,0.0
-4,Hidalgo_aggregate(58),Cadereyta Refinery,0.0,0.0,0.0,0.0
+4,Hidalgo_aggregate(58),Cadereyta Refinery,1948743758.88308,26822231658.323673,50088706448.182915,23266474789.859238
 4,Hidalgo_aggregate(58),Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Hidalgo_aggregate(58),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Hidalgo_aggregate(58),Madero Refinery,0.0,0.0,0.0,0.0
@@ -3093,15 +3093,15 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Irapuato,Madero Refinery,0.0,0.0,0.0,0.0
 4,Irapuato,Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Irapuato,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Irapuato,Salina Cruz Refinery,1413332482.75,19452907079.113155,37020801336.31659,17567894257.20343
+4,Irapuato,Salina Cruz Refinery,530937325.375,7307745757.924167,13858903029.225874,6551157271.301707
 4,Irapuato,Tula Refinery,0.0,0.0,0.0,0.0
-4,Iztapalapa,Cadereyta Refinery,1291170390.49204,17771485433.259354,34118004414.87065,16346518981.611298
+4,Iztapalapa,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Iztapalapa,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Iztapalapa,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Iztapalapa,Madero Refinery,0.0,0.0,0.0,0.0
-4,Iztapalapa,Minatitlan Refinery,1063777602.6835,14641683475.34138,28109356605.494373,13467673130.152994
+4,Iztapalapa,Minatitlan Refinery,1724400123.5,23734397800.287697,45472451857.2381,21738054056.9504
 4,Iztapalapa,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Iztapalapa,Salina Cruz Refinery,1916470736.32447,26378030370.475815,50640997907.3105,24262967536.834686
+4,Iztapalapa,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Iztapalapa,Tula Refinery,0.0,0.0,0.0,0.0
 4,Jalisco_aggregate(106),Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Jalisco_aggregate(106),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3159,13 +3159,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Michoacán de Ocampo_aggregate(102),Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Michoacán de Ocampo_aggregate(102),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Michoacán de Ocampo_aggregate(102),Tula Refinery,0.0,0.0,0.0,0.0
-4,Monterrey,Cadereyta Refinery,1061780169.5,14614191089.374449,27493800564.015736,12879609474.641285
+4,Monterrey,Cadereyta Refinery,69332706.4601283,954285500.9516368,1816847193.5103621,862561692.5587254
 4,Monterrey,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Monterrey,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Monterrey,Madero Refinery,0.0,0.0,0.0,0.0
-4,Monterrey,Minatitlan Refinery,0.0,0.0,0.0,0.0
+4,Monterrey,Minatitlan Refinery,679686096.402905,9355102665.272594,17811013586.03081,8455910920.758216
 4,Monterrey,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Monterrey,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+4,Monterrey,Salina Cruz Refinery,260626424.136967,3587224996.932841,6829653873.676483,3242428876.7436423
 4,Monterrey,Tula Refinery,0.0,0.0,0.0,0.0
 4,Morelia,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Morelia,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3183,13 +3183,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Morelos_aggregate(32),Salamanca Refinery,0.0,0.0,0.0,-0.0
 4,Morelos_aggregate(32),Salina Cruz Refinery,0.0,0.0,0.0,-0.0
 4,Morelos_aggregate(32),Tula Refinery,0.0,0.0,0.0,-0.0
-4,Mérida,Cadereyta Refinery,426776654.297144,5874093110.365216,10994526504.699802,5120433394.334587
+4,Mérida,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Mérida,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Mérida,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Mérida,Madero Refinery,0.0,0.0,0.0,0.0
 4,Mérida,Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Mérida,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Mérida,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+4,Mérida,Salina Cruz Refinery,1590727176.75,21894542391.98392,41442407369.35804,19547864977.37412
 4,Mérida,Tula Refinery,0.0,0.0,0.0,0.0
 4,México_aggregate(117),Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,México_aggregate(117),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3247,14 +3247,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Oaxaca_aggregate(159),Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Oaxaca_aggregate(159),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Oaxaca_aggregate(159),Tula Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Cadereyta Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Cangrejera Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Madero Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Minatitlan Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Pachuca de Soto,Tula Refinery,0.0,0.0,0.0,0.0
+4,Pachuca de Soto,Cadereyta Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Cangrejera Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Dos Bocas Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Madero Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Minatitlan Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Salamanca Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Salina Cruz Refinery,0.0,0.0,0.0,-0.0
+4,Pachuca de Soto,Tula Refinery,0.0,0.0,0.0,-0.0
 4,Puebla,Cadereyta Refinery,0.0,0.0,0.0,-0.0
 4,Puebla,Cangrejera Refinery,0.0,0.0,0.0,-0.0
 4,Puebla,Dos Bocas Refinery,0.0,0.0,0.0,-0.0
@@ -3423,13 +3423,13 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Tuxtla Gutiérrez,Salamanca Refinery,0.0,0.0,0.0,0.0
 4,Tuxtla Gutiérrez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 4,Tuxtla Gutiérrez,Tula Refinery,0.0,0.0,0.0,0.0
-4,Veracruz,Cadereyta Refinery,1027387828.0,14140819797.340704,26504332027.109917,12363512229.76921
+4,Veracruz,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Veracruz,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Veracruz,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 4,Veracruz,Madero Refinery,0.0,0.0,0.0,0.0
 4,Veracruz,Minatitlan Refinery,0.0,0.0,0.0,0.0
 4,Veracruz,Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Veracruz,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+4,Veracruz,Salina Cruz Refinery,759557085.75,10454435591.565147,19578874669.53243,9124439077.967283
 4,Veracruz,Tula Refinery,0.0,0.0,0.0,0.0
 4,Veracruz de Ignacio de la Llave_aggregate(167),Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Veracruz de Ignacio de la Llave_aggregate(167),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3463,14 +3463,14 @@ T,loc,plant,sales,freight,revenue,ebitda
 4,Zacatecas,Salamanca Refinery,0.0,0.0,0.0,-0.0
 4,Zacatecas,Salina Cruz Refinery,0.0,0.0,0.0,-0.0
 4,Zacatecas,Tula Refinery,0.0,0.0,0.0,-0.0
-4,Zacatecas_aggregate(40),Cadereyta Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Cangrejera Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Madero Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Minatitlan Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Salamanca Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-4,Zacatecas_aggregate(40),Tula Refinery,0.0,0.0,0.0,0.0
+4,Zacatecas_aggregate(40),Cadereyta Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Cangrejera Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Dos Bocas Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Madero Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Minatitlan Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Salamanca Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Salina Cruz Refinery,0.0,0.0,0.0,-0.0
+4,Zacatecas_aggregate(40),Tula Refinery,0.0,0.0,0.0,-0.0
 4,Zapopan,Cadereyta Refinery,0.0,0.0,0.0,0.0
 4,Zapopan,Cangrejera Refinery,0.0,0.0,0.0,0.0
 4,Zapopan,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3484,7 +3484,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Acapulco de Juárez,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Acapulco de Juárez,Madero Refinery,0.0,0.0,0.0,0.0
 5,Acapulco de Juárez,Minatitlan Refinery,0.0,0.0,0.0,0.0
-5,Acapulco de Juárez,Salamanca Refinery,222689955.421875,3065072842.481222,6606215483.841977,3541142641.360755
+5,Acapulco de Juárez,Salamanca Refinery,468832258.8125,6452940463.538138,13961906715.07456,7508966251.536422
 5,Acapulco de Juárez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Acapulco de Juárez,Tula Refinery,0.0,0.0,0.0,0.0
 5,Aguascalientes,Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -3501,7 +3501,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Aguascalientes_aggregate(10),Madero Refinery,0.0,0.0,0.0,0.0
 5,Aguascalientes_aggregate(10),Minatitlan Refinery,0.0,0.0,0.0,0.0
 5,Aguascalientes_aggregate(10),Salamanca Refinery,0.0,0.0,0.0,0.0
-5,Aguascalientes_aggregate(10),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+5,Aguascalientes_aggregate(10),Salina Cruz Refinery,193216009.5625,2659397647.8224063,5424645217.770859,2765247569.9484525
 5,Aguascalientes_aggregate(10),Tula Refinery,0.0,0.0,0.0,0.0
 5,Ahome,Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Ahome,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3532,7 +3532,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Baja California Sur_aggregate(5),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Baja California Sur_aggregate(5),Madero Refinery,0.0,0.0,0.0,0.0
 5,Baja California Sur_aggregate(5),Minatitlan Refinery,0.0,0.0,0.0,0.0
-5,Baja California Sur_aggregate(5),Salamanca Refinery,405480528.03125,5580976260.330449,12434933745.02726,6853957484.696812
+5,Baja California Sur_aggregate(5),Salamanca Refinery,674130180.375,9278631828.04971,20693282682.14604,11414650854.096334
 5,Baja California Sur_aggregate(5),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Baja California Sur_aggregate(5),Tula Refinery,0.0,0.0,0.0,0.0
 5,Baja California_aggregate(5),Cadereyta Refinery,0.0,0.0,0.0,0.0
@@ -3634,11 +3634,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Ciudad de México_aggregate(14),Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Ciudad de México_aggregate(14),Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Ciudad de México_aggregate(14),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-5,Ciudad de México_aggregate(14),Madero Refinery,2228304279.31926,30670062861.1076,64505120125.40846,33835057264.300865
+5,Ciudad de México_aggregate(14),Madero Refinery,2207634098.19054,30385561430.826275,64425427660.44232,34039866229.616047
 5,Ciudad de México_aggregate(14),Minatitlan Refinery,0.0,0.0,0.0,0.0
-5,Ciudad de México_aggregate(14),Salamanca Refinery,1653606001.85028,22759997588.72542,47868711099.91983,25108713511.19441
+5,Ciudad de México_aggregate(14),Salamanca Refinery,1138814046.1159,15674474399.949179,33234031856.4889,17559557456.539722
 5,Ciudad de México_aggregate(14),Salina Cruz Refinery,0.0,0.0,0.0,0.0
-5,Ciudad de México_aggregate(14),Tula Refinery,2252167711.83046,30998515748.80025,65195920567.26275,34197404818.462494
+5,Ciudad de México_aggregate(14),Tula Refinery,2693569170.69356,37073902587.105675,78606480076.1824,41532577489.07673
 5,Coahuila de Zaragoza_aggregate(27),Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Coahuila de Zaragoza_aggregate(27),Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Coahuila de Zaragoza_aggregate(27),Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3695,11 +3695,11 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Durango,Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Durango,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Durango,Tula Refinery,0.0,0.0,0.0,0.0
-5,Durango_aggregate(26),Cadereyta Refinery,851808929.5,11724176835.220587,24288425611.140865,12564248775.920279
+5,Durango_aggregate(26),Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Durango_aggregate(26),Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Durango_aggregate(26),Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Durango_aggregate(26),Madero Refinery,0.0,0.0,0.0,0.0
-5,Durango_aggregate(26),Minatitlan Refinery,0.0,0.0,0.0,0.0
+5,Durango_aggregate(26),Minatitlan Refinery,675216297.625,9293580991.250261,19207500888.440186,9913919897.189924
 5,Durango_aggregate(26),Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Durango_aggregate(26),Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Durango_aggregate(26),Tula Refinery,0.0,0.0,0.0,0.0
@@ -3755,10 +3755,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Gustavo A. Madero,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Gustavo A. Madero,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Gustavo A. Madero,Madero Refinery,0.0,0.0,0.0,0.0
-5,Gustavo A. Madero,Minatitlan Refinery,1311237416.13691,18047685117.331066,37803639818.217,19755954700.885937
+5,Gustavo A. Madero,Minatitlan Refinery,1112696476.25,15314995886.623684,32023209102.55069,16708213215.927004
 5,Gustavo A. Madero,Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Gustavo A. Madero,Salina Cruz Refinery,0.0,0.0,0.0,0.0
-5,Gustavo A. Madero,Tula Refinery,441401458.863094,6075386838.305337,12725827955.13642,6650441116.831081
+5,Gustavo A. Madero,Tula Refinery,0.0,0.0,0.0,0.0
 5,Gómez Palacio,Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Gómez Palacio,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Gómez Palacio,Dos Bocas Refinery,0.0,0.0,0.0,0.0
@@ -3775,29 +3775,29 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Hermosillo,Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Hermosillo,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Hermosillo,Tula Refinery,0.0,0.0,0.0,0.0
-5,Hidalgo_aggregate(58),Cadereyta Refinery,0.0,0.0,0.0,0.0
+5,Hidalgo_aggregate(58),Cadereyta Refinery,1469075150.55492,20220141222.802464,40808824418.52536,20588683195.722893
 5,Hidalgo_aggregate(58),Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Hidalgo_aggregate(58),Dos Bocas Refinery,0.0,0.0,0.0,0.0
-5,Hidalgo_aggregate(58),Madero Refinery,0.0,0.0,0.0,0.0
+5,Hidalgo_aggregate(58),Madero Refinery,301682726.134572,4152318092.520238,8380318322.229748,4228000229.7095103
 5,Hidalgo_aggregate(58),Minatitlan Refinery,0.0,0.0,0.0,0.0
 5,Hidalgo_aggregate(58),Salamanca Refinery,0.0,0.0,0.0,0.0
-5,Hidalgo_aggregate(58),Salina Cruz Refinery,0.0,0.0,0.0,0.0
+5,Hidalgo_aggregate(58),Salina Cruz Refinery,461180729.519483,6347625903.682726,12810946675.572699,6463320771.889974
 5,Hidalgo_aggregate(58),Tula Refinery,0.0,0.0,0.0,0.0
-5,Irapuato,Cadereyta Refinery,2062306675.0,28385295468.020554,58268218091.0288,29882922623.008244
+5,Irapuato,Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Irapuato,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Irapuato,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Irapuato,Madero Refinery,0.0,0.0,0.0,0.0
 5,Irapuato,Minatitlan Refinery,0.0,0.0,0.0,0.0
 5,Irapuato,Salamanca Refinery,0.0,0.0,0.0,0.0
-5,Irapuato,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+5,Irapuato,Salina Cruz Refinery,617345240.125,8497051994.812665,17303651080.729805,8806599085.917141
 5,Irapuato,Tula Refinery,0.0,0.0,0.0,0.0
-5,Iztapalapa,Cadereyta Refinery,1261203003.30492,17359018582.41576,35974796474.97801,18615777892.562256
+5,Iztapalapa,Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Iztapalapa,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Iztapalapa,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Iztapalapa,Madero Refinery,0.0,0.0,0.0,0.0
-5,Iztapalapa,Minatitlan Refinery,1257912243.48538,17313725032.758827,35880930210.43078,18567205177.67195
+5,Iztapalapa,Minatitlan Refinery,781236885.747281,10752833272.215824,22190689197.471558,11437855925.255732
 5,Iztapalapa,Salamanca Refinery,0.0,0.0,0.0,0.0
-5,Iztapalapa,Salina Cruz Refinery,3558271932.70971,48975548297.408134,101496831395.4372,52521283098.02907
+5,Iztapalapa,Salina Cruz Refinery,1168783919.25272,16086975467.050524,33198791767.660816,17111816300.61029
 5,Iztapalapa,Tula Refinery,0.0,0.0,0.0,0.0
 5,Jalisco_aggregate(106),Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Jalisco_aggregate(106),Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3861,7 +3861,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Monterrey,Madero Refinery,0.0,0.0,0.0,0.0
 5,Monterrey,Minatitlan Refinery,0.0,0.0,0.0,0.0
 5,Monterrey,Salamanca Refinery,0.0,0.0,0.0,0.0
-5,Monterrey,Salina Cruz Refinery,0.0,0.0,0.0,0.0
+5,Monterrey,Salina Cruz Refinery,1117746034.25,15384497284.039715,31341734605.975082,15957237321.93537
 5,Monterrey,Tula Refinery,0.0,0.0,0.0,0.0
 5,Morelia,Cadereyta Refinery,0.0,0.0,0.0,0.0
 5,Morelia,Cangrejera Refinery,0.0,0.0,0.0,0.0
@@ -3879,7 +3879,7 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Morelos_aggregate(32),Salamanca Refinery,0.0,0.0,0.0,-0.0
 5,Morelos_aggregate(32),Salina Cruz Refinery,0.0,0.0,0.0,-0.0
 5,Morelos_aggregate(32),Tula Refinery,0.0,0.0,0.0,-0.0
-5,Mérida,Cadereyta Refinery,0.0,0.0,0.0,0.0
+5,Mérida,Cadereyta Refinery,1810095121.0,24913891545.643867,50551510597.87902,25637619052.235153
 5,Mérida,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Mérida,Dos Bocas Refinery,0.0,0.0,0.0,0.0
 5,Mérida,Madero Refinery,0.0,0.0,0.0,0.0
@@ -4119,10 +4119,10 @@ T,loc,plant,sales,freight,revenue,ebitda
 5,Tuxtla Gutiérrez,Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Tuxtla Gutiérrez,Salina Cruz Refinery,0.0,0.0,0.0,0.0
 5,Tuxtla Gutiérrez,Tula Refinery,0.0,0.0,0.0,0.0
-5,Veracruz,Cadereyta Refinery,0.0,0.0,0.0,0.0
+5,Veracruz,Cadereyta Refinery,896148336.25,12334458117.210567,24897850351.479946,12563392234.269379
 5,Veracruz,Cangrejera Refinery,0.0,0.0,0.0,0.0
 5,Veracruz,Dos Bocas Refinery,0.0,0.0,0.0,0.0
-5,Veracruz,Madero Refinery,281012545.005853,3867816662.238928,7816932719.153037,3949116056.914109
+5,Veracruz,Madero Refinery,0.0,0.0,0.0,0.0
 5,Veracruz,Minatitlan Refinery,0.0,0.0,0.0,0.0
 5,Veracruz,Salamanca Refinery,0.0,0.0,0.0,0.0
 5,Veracruz,Salina Cruz Refinery,0.0,0.0,0.0,0.0

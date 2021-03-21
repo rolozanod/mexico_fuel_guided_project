@@ -339,13 +339,17 @@ def get_stats_plant_performance(production, period_stats, wacc):
 
     return production.groupby(['plant']).agg({c: ['mean', 'std'] for c in production.columns})
 
-def mc_simulation(prod_stats, period_stats, WACC, samples=500, plot=True):
+def mc_simulation(prod_stats, period_stats, WACC, n_samples=500, plot=True):
+
+    cpx_df_factor = (get_stats_plant_performance(prod_stats, period_stats, WACC)['depreciation']['mean']/get_stats_plant_performance(prod_stats, period_stats, WACC)['capex']['mean']).dropna().mean()
     
     samples = {col:
         {
-            idx: np.random.normal(row['mean'], row['std'], size=samples) if (row['std'] != 0)&(col not in ['capex', 'depreciation']) else np.random.normal(row['mean'], row['mean']*0.025, size=samples) for idx, row in get_stats_plant_performance(prod_stats, period_stats, WACC)[col].iterrows()
-        } for col in get_stats_plant_performance(prod_stats, period_stats, WACC).T.droplevel(1).index
+            idx: np.random.normal(row['mean'], row['std'], size=n_samples) if (row['std'] != 0)&(col not in ['capex']) else np.random.normal(row['mean'], row['mean']*0.025, size=n_samples) for idx, row in get_stats_plant_performance(prod_stats, period_stats, WACC)[col].iterrows()
+        } for col in np.unique(get_stats_plant_performance(prod_stats, period_stats, WACC).T.droplevel(1).index)
     }
+
+    samples.update({'depreciation': {pln: v*cpx_df_factor for pln, v in samples['capex'].items()}})
 
     npvs = (pd.DataFrame(samples['NPV_revenues']) - pd.DataFrame(samples['NPV_costs']) - pd.DataFrame(samples['depreciation']))*0.65 + pd.DataFrame(samples['depreciation']) - pd.DataFrame(samples['capex'])
 
@@ -371,9 +375,9 @@ def mc_simulation(prod_stats, period_stats, WACC, samples=500, plot=True):
     fig.update_layout(layout)
     fig.show()
 
-    benefits = (pd.DataFrame(samples['NPV_revenues']) - pd.DataFrame(samples['NPV_costs']) - pd.DataFrame(samples['depreciation']))*0.65 + pd.DataFrame(samples['depreciation'])
+    benefits = (pd.DataFrame(samples['NPV_revenues']) - pd.DataFrame(samples['NPV_costs']))*(1-0.35)
 
-    costs = pd.DataFrame(samples['capex'])
+    costs = pd.DataFrame(samples['capex']) - pd.DataFrame(samples['depreciation'])*(0.35)
 
     return benefits, costs
 
@@ -400,10 +404,10 @@ def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
 
     K = capex.groupby(['loc']).agg({'capex': sum})['capex']
 
-    call = pd.concat([benefits.mean(axis=0), K, vol**2], axis=1).apply(lambda r: BS_model(r[0], r['capex'], rf, r['vol'], T), axis=1).fillna(0)
-    # call = pd.concat([benefits.mean(axis=0), costs.mean(axis=0), vol], axis=1).apply(lambda r: BS_model(r[0], r[1], rf, r['vol'], T), axis=1).fillna(0)
-
     npv = benefits - costs
+
+    call = pd.concat([benefits.clip(0, None).mean(axis=0), K, vol**2], axis=1).apply(lambda r: BS_model(r[0], r['capex'], rf, r['vol'], T), axis=1).fillna(0)
+    # call = pd.concat([benefits.mean(axis=0), costs.mean(axis=0), vol], axis=1).apply(lambda r: BS_model(r[0], r[1], rf, r['vol'], T), axis=1).fillna(0)
 
     if plot:
         valuation = pd.concat([npv.mean(axis=0), call], axis=1)
@@ -438,6 +442,6 @@ def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
         fig = go.Figure(data=data, layout = layout)
         fig.show()
 
-    return npv.mean(axis=0),  call
+    return npv,  call
 
 # END
