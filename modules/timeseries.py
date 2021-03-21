@@ -295,7 +295,7 @@ class Sampling(tf.keras.layers.Layer):
         mu, sigma = inputs
         batch = tf.shape(mu)[0]
         dim = tf.shape(mu)[1]
-        epsilon = tf.keras.backend.random_normal(shape=(batch, dim))
+        epsilon = tf.random.normal(shape=(batch, dim))
         return mu + tf.exp(0.5*sigma)*epsilon
 
 class EncoderLayers(tf.keras.Model):
@@ -416,12 +416,12 @@ class DecoderLayers(tf.keras.Model):
 
         self.i_dense = tf.keras.layers.Dense(self.i_units, activation='relu', name="decoder_dense")
 
-        self.sample = tf.keras.backend.random_normal
+        self.sample = tf.random.normal
 
     def call(self, inputs):
         
         if self.random:
-            x = inputs + self.sample(shape=inputs.shape)*self.amplitude*tf.math.reduce_std(inputs, axis=-1, keepdims=True)
+            x = inputs + self.sample(shape=inputs.shape, mean=0, stddev=self.amplitude)#*tf.math.reduce_mean(inputs, axis=-1, keepdims=True)
         else:
             x = inputs
 

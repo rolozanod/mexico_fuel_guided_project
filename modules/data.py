@@ -3,7 +3,6 @@ import requests
 import zipfile, io
 from tqdm import tqdm
 import geopandas as gpd
-import re
 
 import pandas as pd
 import numpy as np
@@ -47,10 +46,10 @@ def process_inegi_shp_request(r, head):
     # Extract files
     for shp_file in shp_files_headers:
         for shp_ext in shp_resources:
-            zf.extract(f'{shp_file_path}{shp_file}{shp_ext}', path='/content/')
+            zf.extract(f'{shp_file_path}{shp_file}{shp_ext}', path='/content/mexico_fuel_guided_project/')
 
     # Read path
-    coords = gpd.read_file(f'/content/{shp_file_path}')
+    coords = gpd.read_file(f'/content/mexico_fuel_guided_project/{shp_file_path}')
 
     # Delete current files in path because gpd reads the whole folder
     for root, _, files in os.walk(shp_file_path):
@@ -60,14 +59,6 @@ def process_inegi_shp_request(r, head):
     coords = coords.to_crs("wgs84")
 
     coords['centroid'] = coords.geometry.centroid
-
-    def get_latlon(s):
-        centroid_re = r"POINT \(([+-]\d+.\d+) (\d+.\d+)\)"
-
-        lat = float(re.search(centroid_re, s).group(1))
-        lon = float(re.search(centroid_re, s).group(2))
-
-        return lat, lon
 
     coords['lat'] = coords.centroid.apply(lambda r: r.x)
     coords['lon'] = coords.centroid.apply(lambda r: r.y)
@@ -95,7 +86,7 @@ def get_coords(save_local=True):
     coords = coords.rename(columns={"CVE_ENT": "state_key", "STATE": "state", "CVEGEO": "key", "CVE_MUN": "loc_key", "MUN": "loc"})
 
     if save_local:
-        coords.to_csv('/content/geoinfo.csv', index=False, sep='|', encoding='cp1252')
+        coords.to_csv('/content/mexico_fuel_guided_project/geoinfo.csv', index=False, sep='|', encoding='cp1252')
 
     return coords
 
@@ -321,7 +312,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
 
 def create_fuel_dataframe(min_share=0.1, keep_above=0.9, local=True):
 
-    consumption_data, model = calc_consumption_data(return_model=True, aggregated=True)
+    consumption_data, model = calc_consumption_data(return_model=True, aggregated=True, min_share=min_share, keep_above=keep_above, local=local)
 
     data = get_price_dataframe()
 

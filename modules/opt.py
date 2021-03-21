@@ -41,7 +41,7 @@ def monthly_data(version, window, init_date, final_date, plot=True, p_pbar=None)
     price_ts, price_encoder, price_decoder, price_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=20)
 
     # litres
-    litres_ts, litres_encoder, litres_decoder, litres_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=100)
+    litres_ts, litres_encoder, litres_decoder, litres_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=20)
     
     timeseries.load_weights(version, price_encoder, price_decoder, price_vae, litres_encoder, litres_decoder, litres_vae)
     
@@ -86,7 +86,7 @@ def annual_data(version, window, init_date, final_date, plot=True, p_pbar=None):
     price_ts, price_encoder, price_decoder, price_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=20)
 
     # litres
-    litres_ts, litres_encoder, litres_decoder, litres_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=100)
+    litres_ts, litres_encoder, litres_decoder, litres_vae = timeseries.get_models(batch_size=window.batch, input_width=window.input_width-1, input_dims=len(window.label_columns), latent_dims=LATENT_DIMS, filters=FILTERS, kernel_size=KERNEL_SIZE, strides=STRIDES, h_units=H_UNITS, random=True, amplitude=20)
     
     timeseries.load_weights(version, price_encoder, price_decoder, price_vae, litres_encoder, litres_decoder, litres_vae)
     
