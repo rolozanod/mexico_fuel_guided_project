@@ -89,9 +89,9 @@ class ProjectSessions(object):
 
         self.plot_plant_performance = inference.plot_plant_performance
 
-        self.get_stats_plant_performance = inference.get_stats_plant_performance
+        self.get_NPV_stats = inference.get_NPV_stats
 
-        self.get_NPV_stats_plant_performance = inference.get_NPV_stats_plant_performance
+        self.get_NPV_sensitivity = inference.get_NPV_sensitivity
 
         self.sensitivity_diagram = inference.sensitivity_diagram
 

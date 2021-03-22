@@ -150,47 +150,58 @@ def plot_market_consumption(market, demand, period_stats):
     fig = go.Figure(data=data, layout = layout)
     fig.show()
 
-def plot_plant_performance(production, period_stats):
+def get_NPV_stats(production, period_stats, wacc):
+
+    production = production.copy()
+    
+    d_wacc = (1 + wacc)**(1/365) - 1
+
+    period_stats['D_WACC'] = d_wacc
+
+    period_stats['accum_days'] = period_stats['days'].cumsum() - 365
+
+    period_stats['DF'] = 1/((1+period_stats['D_WACC'])**period_stats['accum_days'])
 
     production['date'] = production['T'].map(period_stats['date'].to_dict())
 
-    production['ebitda_L'] = production['ebitda'].div(production.production).replace([np.inf, -np.inf], np.nan).fillna(0)
+    production['DF'] = production['T'].map(period_stats['DF'].to_dict())
 
-    production['fcf_wo_nwc_L'] = production['fcf_wo_nwc'].div(production.production).replace([np.inf, -np.inf], np.nan).fillna(0)
+    production['NPV_revenues'] =  production['revenues']*production['DF']
 
-    def get_stat(c, avg=False):
+    production['NPV_costs'] =  production['costs']*production['DF']
 
-        if avg:
-            agg_fun = {c: 'mean'}
-        else:
-            agg_fun = {c: sum}
+    production = production.assign(NPV_ebitda=lambda r: r.DF*(r.revenues-r.costs))
 
-        g = production.groupby(['file', 'plant'], as_index=False).agg(agg_fun)
-        
-        g = g.groupby(['plant'], as_index=False).agg({c: 'mean'}).to_dict('list')
+    production = production.assign(NPV_fcf=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex))
 
-        return g
+    production = production.groupby(['file', 'plant']).agg({c: sum for c in production.columns if ('NPV' in c)|(c in ['capex', 'depreciation'])})
+
+    return production.groupby(['plant']).agg({c: ['mean', 'std'] for c in production.columns})
+
+def plot_plant_performance(production, period_stats, wacc):
+
+    stats = get_NPV_stats(production, period_stats, wacc).reset_index()
 
     data = [
             go.Bar(
-                x=get_stat('ebitda', avg=False)['plant'],
-                y=get_stat('ebitda', avg=False)['ebitda'],
+                x=stats['plant'],
+                y=stats['NPV_ebitda']['mean'],
                 name='ebitda',
                 yaxis='y'),
             go.Bar(
-                x=get_stat('fcf_wo_nwc', avg=False)['plant'],
-                y=get_stat('fcf_wo_nwc', avg=False)['fcf_wo_nwc'],
+                x=stats['plant'],
+                y=stats['NPV_fcf']['mean'],
                 name='fcf_wo_nwc',
                 yaxis='y'),
             go.Bar(
-                x=get_stat('capex', avg=False)['plant'],
-                y=get_stat('capex', avg=False)['capex'],
+                x=stats['plant'],
+                y=stats['capex']['mean'],
                 name='capex',
                 yaxis='y'),
         ]
 
     layout = {
-                'title': 'Plant performance (avg over scenarios)',
+                'title': 'Plant NPV (avg over scenarios)',
                 'barmode': 'group',
                 'xaxis':{
                         'title': 'Refinery',
@@ -199,13 +210,12 @@ def plot_plant_performance(production, period_stats):
                         'tickfont': {'size':10},
                         },
                 'yaxis':{'title': 'MXN'},
-                # 'yaxis2':{'title': 'MXN/L', 'overlaying': 'y', 'side': 'right'},
             }
 
     fig = go.Figure(data=data, layout = layout)
     fig.show()
 
-def get_NPV_stats_plant_performance(production, period_stats, wacc):
+def get_NPV_sensitivity(production, period_stats, wacc):
 
     production = production.copy()
     
@@ -223,7 +233,7 @@ def get_NPV_stats_plant_performance(production, period_stats, wacc):
 
     production_base = production.copy()
 
-    production = production.assign(NPV_base=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex))
+    production = production.assign(NPV_fcf=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex))
 
     production = production.assign(revenues=lambda r: r.revenues + abs(r.revenues*(0.5))).assign(NPV_revenues_up_50pct=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex)).assign(revenues=lambda r: production_base.loc[r.index].revenues)
 
@@ -257,7 +267,7 @@ def get_NPV_stats_plant_performance(production, period_stats, wacc):
 
     gc = pd.concat(
         [
-            get_stat('NPV_base'),
+            get_stat('NPV_fcf'),
             get_stat('NPV_revenues_up_50pct'),
             get_stat('NPV_revenues_down_50pct'),
             get_stat('NPV_capex_up50pct'),
@@ -271,17 +281,17 @@ def get_NPV_stats_plant_performance(production, period_stats, wacc):
 
 def sensitivity_diagram(production, period_stats, wacc):
 
-    df = get_NPV_stats_plant_performance(production, period_stats, wacc).T
+    df = get_NPV_sensitivity(production, period_stats, wacc).T
 
     def get_bars(plant):
 
         ref_df = df.loc[(slice(None), 'mean'), [plant]].droplevel(1)
 
-        ref_df = ref_df - ref_df.loc['NPV_base']
+        ref_df = ref_df - ref_df.loc['NPV_fcf']
 
         ref_df = ref_df.reset_index()
 
-        ref_df = ref_df.loc[ref_df['index']!='NPV_base']
+        ref_df = ref_df.loc[ref_df['index']!='NPV_fcf']
 
         return ref_df.to_dict('list')
 
@@ -313,40 +323,16 @@ def sensitivity_diagram(production, period_stats, wacc):
     fig = go.Figure(data=data, layout = layout)
     fig.show()  
 
-def get_stats_plant_performance(production, period_stats, wacc):
-
-    production = production.copy()
-    
-    d_wacc = (1 + wacc)**(1/365) - 1
-
-    period_stats['D_WACC'] = d_wacc
-
-    period_stats['accum_days'] = period_stats['days'].cumsum() - 365
-
-    period_stats['DF'] = 1/((1+period_stats['D_WACC'])**period_stats['accum_days'])
-
-    production['date'] = production['T'].map(period_stats['date'].to_dict())
-
-    production['DF'] = production['T'].map(period_stats['DF'].to_dict())
-
-    production['NPV_revenues'] =  production['revenues']*production['DF']
-
-    production['NPV_costs'] =  production['costs']*production['DF']
-
-    production = production.assign(NPV_base=lambda r: r.DF*((r.revenues-r.costs-r.depreciation)*0.65+r.depreciation-r.capex))
-
-    production = production.groupby(['file', 'plant']).agg({c: sum for c in production.columns if ('NPV' in c)|(c in ['capex', 'depreciation'])})
-
-    return production.groupby(['plant']).agg({c: ['mean', 'std'] for c in production.columns})
-
 def mc_simulation(prod_stats, period_stats, WACC, n_samples=500, plot=True):
 
-    cpx_df_factor = (get_stats_plant_performance(prod_stats, period_stats, WACC)['depreciation']['mean']/get_stats_plant_performance(prod_stats, period_stats, WACC)['capex']['mean']).dropna().mean()
+    performance = get_NPV_stats(prod_stats, period_stats, WACC)
+
+    cpx_df_factor = (performance['depreciation']['mean']/performance['capex']['mean']).dropna().mean()
     
     samples = {col:
         {
-            idx: np.random.normal(row['mean'], row['std'], size=n_samples) if (row['std'] != 0)&(col not in ['capex']) else np.random.normal(row['mean'], row['mean']*0.025, size=n_samples) for idx, row in get_stats_plant_performance(prod_stats, period_stats, WACC)[col].iterrows()
-        } for col in np.unique(get_stats_plant_performance(prod_stats, period_stats, WACC).T.droplevel(1).index)
+            idx: np.random.normal(row['mean'], row['std'], size=n_samples) if (row['std'] != 0)&(col not in ['capex']) else np.random.normal(row['mean'], abs(row['mean']*0.2), size=n_samples) for idx, row in performance[col].iterrows()
+        } for col in np.unique(performance.T.droplevel(1).index)
     }
 
     samples.update({'depreciation': {pln: v*cpx_df_factor for pln, v in samples['capex'].items()}})
@@ -379,10 +365,12 @@ def mc_simulation(prod_stats, period_stats, WACC, n_samples=500, plot=True):
 
     costs = pd.DataFrame(samples['capex']) - pd.DataFrame(samples['depreciation'])*(0.35)
 
+    assert ((benefits - costs) - npvs < 1).all().all()
+
     return benefits, costs
 
 def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
-    log_chg = (1+prod_stats.set_index(['T', 'file', 'plant']).nopat.unstack(level=[0]).drop(columns=0).pct_change(axis=1)).apply(np.log).replace([np.inf, -np.inf], np.nan)
+    log_chg = (1+prod_stats.set_index(['T', 'file', 'plant']).ebitda.unstack(level=[0]).drop(columns=0).pct_change(axis=1)).apply(np.log).replace([np.inf, -np.inf], np.nan)
     mu_log_chg = log_chg.mean(axis=1)
     vol_samples = ((log_chg.T - mu_log_chg)**2).mean(axis=0).apply(np.sqrt)
     vol = vol_samples.reset_index().rename(columns={0: 'vol'}).groupby('plant').agg({'vol': 'mean'}).fillna(0)
@@ -406,42 +394,53 @@ def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
 
     npv = benefits - costs
 
-    call = pd.concat([benefits.clip(0, None).mean(axis=0), K, vol**2], axis=1).apply(lambda r: BS_model(r[0], r['capex'], rf, r['vol'], T), axis=1).fillna(0)
-    # call = pd.concat([benefits.mean(axis=0), costs.mean(axis=0), vol], axis=1).apply(lambda r: BS_model(r[0], r[1], rf, r['vol'], T), axis=1).fillna(0)
+    call = pd.concat([benefits.mean(axis=0), K, vol**2], axis=1).apply(lambda r: BS_model(r[0], r['capex'], rf, r['vol'], T), axis=1).fillna(0)
+
+    def step_fn(x):
+        if x>0:
+            return 1
+        else:
+            return 0
+
+    def delta_fn(x):
+        if abs(x)>1e-5:
+            return 1
+        else:
+            return 0
 
     if plot:
-        valuation = pd.concat([npv.mean(axis=0), call], axis=1)
-        valuation.columns = ['npv', 'option']
+        valuation = pd.concat([benefits.mean(axis=0)-K*benefits.mean(axis=0).apply(delta_fn), npv.mean(axis=0), call], axis=1)
+        valuation.columns = ['DCF', 'MC', 'BS']
         valuation.index.names = ['plant']
 
         data = [
                 go.Bar(
                     x=valuation.reset_index().plant,
-                    y=valuation.npv,
-                    name='NPV',
+                    y=valuation.DCF,
+                    name='DCF',
                     yaxis='y'),
                 go.Bar(
                     x=valuation.reset_index().plant,
-                    y=valuation.option,
-                    name='Option',
+                    y=valuation.MC,
+                    name='Monte Carlo',
                     yaxis='y'),
             ]
 
         layout = {
-                    'title': 'Extended NPV',
-                    'barmode': 'stack',
+                    'title': 'DCF vs Monte Carlo',
+                    'barmode': 'group',
                     'xaxis':{
                             'title': 'Refinery',
                             'showticklabels': True,
                             'side':'bottom',
                             'tickfont': {'size':10},
                             },
-                    'yaxis':{'title': 'MXN'},
+                    'yaxis':{'title': 'MXN', 'range': [valuation.min().min()*1.5, valuation.max().max()*1.5]},
                 }
 
         fig = go.Figure(data=data, layout = layout)
         fig.show()
 
-    return npv,  call
+    return npv, call
 
 # END
