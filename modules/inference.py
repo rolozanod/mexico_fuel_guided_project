@@ -24,6 +24,11 @@ def plot_objective_hist(objective):
 
 def plot_plant_production_plan(production, period_stats):
 
+    production = production.copy()
+
+    # production = production.replace({'capacity': {1e25: 0}})
+    production = production.where(lambda r:r.plant.str.contains('Refinery')).dropna(subset=['plant'])
+
     production['date'] = production['T'].map(period_stats['date'].to_dict())
 
     data_dc = {}
@@ -60,6 +65,10 @@ def plot_plant_production_plan(production, period_stats):
     fig.show()
 
 def plot_plant_capex_plan(production, period_stats):
+
+    production = production.copy()
+    
+    production = production.where(lambda r:r.plant.str.contains('Refinery')).dropna(subset=['plant'])
 
     production['date'] = production['T'].map(period_stats['date'].to_dict())
 
@@ -105,29 +114,29 @@ def plot_market_consumption(market, demand, period_stats):
 
     demand['date'] = demand['T'].map(period_stats['date'].to_dict())
 
-    g = market.groupby(['file', 'loc'], as_index=False).agg({'sales': 'sum'})
+    g = market.groupby(['file', 'mun'], as_index=False).agg({'sales': 'sum'})
     
-    g = g.groupby(['loc'], as_index=False).agg({'sales': 'mean'}).sort_values(by=['sales'], ascending=[False]).to_dict('list')
+    g = g.groupby(['mun'], as_index=False).agg({'sales': 'mean'}).sort_values(by=['sales'], ascending=[False]).to_dict('list')
 
-    gd = demand.groupby(['file', 'loc'], as_index=False).agg({'demand': 'sum'})
+    gd = demand.groupby(['file', 'mun'], as_index=False).agg({'demand': 'sum'})
     
-    gd = gd.groupby(['loc'], as_index=False).agg({'demand': 'mean'}).to_dict('list')
+    gd = gd.groupby(['mun'], as_index=False).agg({'demand': 'mean'}).to_dict('list')
 
-    gp = demand.groupby(['loc'], as_index=False).agg({'price': 'mean'}).to_dict('list')
+    gp = demand.groupby(['mun'], as_index=False).agg({'price': 'mean'}).to_dict('list')
 
     data = [
             go.Bar(
-                x=g['loc'],
+                x=g['mun'],
                 y=g['sales'],
                 name='Sales',
                 yaxis='y'),
             go.Bar(
-                x=gd['loc'],
+                x=gd['mun'],
                 y=gd['demand'],
                 name='Demand',
                 yaxis='y'),
             go.Scatter(
-                x=gp['loc'],
+                x=gp['mun'],
                 y=gp['price'],
                 name='Price (right axis)',
                 yaxis='y2',
@@ -153,6 +162,8 @@ def plot_market_consumption(market, demand, period_stats):
 def get_NPV_stats(production, period_stats, wacc):
 
     production = production.copy()
+    
+    production = production.where(lambda r:r.plant.str.contains('Refinery')).dropna(subset=['plant'])
     
     d_wacc = (1 + wacc)**(1/365) - 1
 
@@ -390,7 +401,7 @@ def real_opt_valuation(prod_stats, benefits, costs, capex, rf, T, plot=True):
         BS = S*N(n_d1) - K*np.exp(-rf*t)*N(n_d2)
         return BS
 
-    K = capex.groupby(['loc']).agg({'capex': sum})['capex']
+    K = capex.groupby(['mun']).agg({'capex': sum})['capex']
 
     npv = benefits - costs
 

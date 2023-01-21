@@ -7,3 +7,5 @@
 /Sessions/.ipynb_checkpoints/
 /Sessions/.ipynb_checkpoints/*.ipynb
 /conjunto_de_datos
+/local
+/.devcontainer*

@@ -1,0 +1,9 @@
+unidecode
+geopandas
+pyomo
+tqdm
+scikit-learn
+statsmodels
+plotly
+dask
+openpyxl

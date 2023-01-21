@@ -1,18 +1,13 @@
-import os
-import requests
-import zipfile, io
-from tqdm import tqdm
-import geopandas as gpd
-
 import pandas as pd
 import numpy as np
 
 from sklearn.linear_model import LinearRegression
 
-import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
 import matplotlib.pyplot as plt
+
+from modules import census, businesses
 
 month_map = {
     'ENE': 1,
@@ -29,66 +24,19 @@ month_map = {
     'DIC': 12
 }
 
-# https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=889463807469
-# https://www.inegi.org.mx/temas/mg/#Descargas
+def download_project_data():
 
-def process_inegi_shp_request(r, head):
-    shp_file_path = "conjunto_de_datos/"
-    shp_files_headers = [head]
-    shp_resources = ['.shp', '.shx', '.cpg', '.dbf', '.prj']
-    zf = zipfile.ZipFile(io.BytesIO(r.content))
-
-    # Delete current files in path because gpd reads the whole folder
-    for root, _, files in os.walk(shp_file_path):
-        for file in files:
-            os.remove(os.path.join(root, file))
-
-    # Extract files
-    for shp_file in shp_files_headers:
-        for shp_ext in shp_resources:
-            zf.extract(f'{shp_file_path}{shp_file}{shp_ext}', path='/content/mexico_fuel_guided_project/')
-
-    # Read path
-    coords = gpd.read_file(f'/content/mexico_fuel_guided_project/{shp_file_path}')
-
-    # Delete current files in path because gpd reads the whole folder
-    for root, _, files in os.walk(shp_file_path):
-        for file in files:
-            os.remove(os.path.join(root, file))
-
-    coords = coords.to_crs("wgs84")
-
-    coords['centroid'] = coords.geometry.centroid
-
-    coords['lat'] = coords.centroid.apply(lambda r: r.x)
-    coords['lon'] = coords.centroid.apply(lambda r: r.y)
-
-    coords = coords.drop(columns=['geometry', 'centroid'])
-
-    return coords
-
-def get_coords(save_local=True):
-    try:
-        coords = process_inegi_shp_request(r, '00mun')
-        state_coords = process_inegi_shp_request(r, '00ent')
-    except:
-        geo_zip_url = "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/marcogeo/889463807469/mg_2020_integrado.zip"
-        r = requests.get(geo_zip_url)
-        coords = process_inegi_shp_request(r, '00mun')
-        state_coords = process_inegi_shp_request(r, '00ent')
-
-    coords = pd.merge(
-        left=state_coords[["CVE_ENT", "NOMGEO"]].rename(columns={"NOMGEO": "STATE"}),
-        right=coords.rename(columns={"NOMGEO": "MUN"}),
-        on=["CVE_ENT"]
+    census.download_INEGI_files(
+        url=r"https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/ageb_manzana/RESAGEBURB_{}_2020_csv.zip",
+        zipped_file="RESAGEBURB_{}CSV20.csv",
+        period="2020"
     )
 
-    coords = coords.rename(columns={"CVE_ENT": "state_key", "STATE": "state", "CVEGEO": "key", "CVE_MUN": "loc_key", "MUN": "loc"})
+    businesses.download_zip_files()
 
-    if save_local:
-        coords.to_csv('/content/mexico_fuel_guided_project/geoinfo.csv', index=False, sep='|', encoding='cp1252')
+    census.download_censo_economico_INEGI_files()
 
-    return coords
+    census.get_coords()
 
 def get_prices():
     # SITE
@@ -106,10 +54,18 @@ def get_prices():
     return daily_prices, regular_state_prices, premium_state_prices, diesel_state_prices
 
 def get_pop():
-    return pd.read_csv('short_censo2020.csv', header=0).rename(columns={"ENTIDAD": "state_key", "NOM_ENT": "state", "MUN": "loc_key", "NOM_MUN": "loc", "POBTOT": "pop", "TVIVHAB": "hab_houses", "VPH_AUTOM": "cars_per_house"})
+    return census.read_INEGI_data().rename(columns={"POBTOT": "pop", "TVIVPARHAB": "hab_houses", "VPH_AUTOM": "cars_per_house"}).reset_index()
 
 def get_demand():
     return pd.read_csv('demand.csv').rename(columns={'Estado': 'state'}).set_index('state').T.unstack().reset_index().rename(columns={'level_1': 'year', 0: 'MBBL'}).assign(year=lambda r: r['year'].astype(int), BBL=lambda r: r.MBBL*1e3)
+
+def get_coords():
+
+    coords = census.dask_read_coords()
+    coords = coords.assign(state_key=lambda r: r.state_key.astype(int).astype(str), mun_key=lambda r: r.mun_key.astype(int).astype(str))
+    coords = coords.groupby(['state', 'state_key', 'mun', 'mun_key']).agg({'lat': 'mean', 'lon': 'mean'}).compute()
+
+    return coords
 
 def calc_fpc(pop, demand, regress = True):
 
@@ -142,7 +98,7 @@ def calc_fpc(pop, demand, regress = True):
 
     state_data['consumption'] = state_data['BBL'].div(state_data['pop'])
 
-    pop['LOC_FUEL'] = pop.apply(lambda r: state_data.set_index('state').consumption.to_dict()[r['state']]*r['pop'], axis=1)
+    pop['MUN_FUEL'] = pop.apply(lambda r: state_data.set_index('state').consumption.to_dict()[r['state']]*r['pop'], axis=1)
 
     return pop
 
@@ -150,7 +106,7 @@ def retrieve_daily_avg_prices(df, daily_data, ftype):
     # Get the monthly state price for the fuel type (ftype)
     df0 = df.loc[df[('ENTIDAD', 'Unnamed: 0_level_1')]=='Nacional'].drop(columns=[('ENTIDAD', 'Unnamed: 0_level_1')]).T.reset_index().rename(columns={'level_0': 'year', 'level_1': 'month_str', 0: 'price'})
 
-    # transllate the month name
+    # translate the month name
     df0['month'] = df0['month_str'].map(month_map)
 
     # get the daily national price for the fuel type
@@ -216,22 +172,12 @@ def get_price_dataframe():
     return fuel
 
 def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, keep_above=0.9, local=True):
+
     pop = get_pop()
     demand = get_demand()
 
-    pop = calc_fpc(pop, demand, regress = True)
-    state_data_stats = pop.groupby('state').LOC_FUEL.sum().div(pop.LOC_FUEL.sum())
-
-    if local:
-        coords = pd.read_csv('geoinfo.csv', sep='|', encoding='cp1252')
-    else:
-        coords = get_coords()
-
-    consumption_data = pd.merge(
-        left=pop,
-        right=coords,
-        on=['state', 'loc'],
-        )[['state', 'loc', 'lat', 'lon', 'LOC_FUEL']].drop_duplicates()
+    consumption_data = calc_fpc(pop, demand, regress = True)
+    state_data_stats = consumption_data.groupby('state').MUN_FUEL.sum().div(pop.MUN_FUEL.sum())
 
     fuel_price = get_price_dataframe()
 
@@ -267,8 +213,8 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
     model = ols('BBL ~ C(state) * price', elasticity).fit()
 
     # Calculate the revenue for each location and estimate its participation on each state
-    consumption_data = consumption_data.set_index(["state", "loc"])
-    consumption_data["state_share"] = consumption_data.groupby(["state", "loc"]).agg({"LOC_FUEL": sum}).div(consumption_data.assign(LOC_FUEL=lambda r: r['LOC_FUEL']).groupby(["state"]).agg({"LOC_FUEL": sum})).LOC_FUEL
+    consumption_data = consumption_data.set_index(["state", "mun"])
+    consumption_data["state_share"] = consumption_data.groupby(["state", "mun"]).agg({"MUN_FUEL": sum}).div(consumption_data.assign(MUN_FUEL=lambda r: r['MUN_FUEL']).groupby(["state"]).agg({"MUN_FUEL": sum})).MUN_FUEL
 
     # Calculate the treshhold of relevant locations
     # This is done using the Box and Whisker methodology -> Q(50) + 1.5 x (Q(75) - Q(25))
@@ -298,7 +244,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
             if dropped.empty:
                 return np.nan
             else:
-                return np.average(dropped, weights = consumption_data.reset_index().loc[dropped.index].LOC_FUEL)
+                return np.average(dropped, weights = consumption_data.reset_index().loc[dropped.index].MUN_FUEL)
 
         def loc_name(x):
             if len(x)!=1:
@@ -306,7 +252,7 @@ def calc_consumption_data(return_model=True, aggregated=True, min_share=0.1, kee
             else:
                 return x
 
-        consumption_data = consumption_data.reset_index().groupby(['state', 'aggregate'], as_index=False).agg({'lat': group_wa, 'lon': group_wa, 'LOC_FUEL': sum, 'loc': loc_name}).drop(columns=['aggregate'])
+        consumption_data = consumption_data.reset_index().groupby(['state', 'aggregate'], as_index=False).agg({'lat': group_wa, 'lon': group_wa, 'MUN_FUEL': sum, 'mun': loc_name}).drop(columns=['aggregate'])
 
     return consumption_data, model
 
@@ -331,9 +277,9 @@ def create_fuel_dataframe(min_share=0.1, keep_above=0.9, local=True):
         on=['state'],
     ).drop_duplicates()
 
-    data['LOC_FUEL'] *= data['state_fuel_predict']
+    data['MUN_FUEL'] *= data['state_fuel_predict']
 
-    data = data.drop(columns=['state_fuel_predict']).rename(columns={'LOC_FUEL': 'bbl'})[['state', 'loc', 'lat', 'lon', 'date', 'bbl', 'price']]
+    data = data.drop(columns=['state_fuel_predict']).rename(columns={'MUN_FUEL': 'bbl'})[['state', 'mun', 'lat', 'lon', 'date', 'bbl', 'price']]
 
     data['litres'] = data['bbl']*158.98730272810
 
@@ -342,6 +288,7 @@ def create_fuel_dataframe(min_share=0.1, keep_above=0.9, local=True):
     return data
 
 def plot_monthly_data(data):
+    
     fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(18, 12))
 
     m = data.groupby(data.date.dt.to_period("M")).agg({'price': 'mean'}).price

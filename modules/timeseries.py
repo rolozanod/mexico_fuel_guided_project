@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-import tensorflow_datasets as tfds
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from datetime import datetime
@@ -12,8 +11,8 @@ from modules.data import create_fuel_dataframe
 
 def get_timeseries(data):
 
-    price_pvt = data.set_index(['date', 'state', 'loc']).unstack(level=[1,2]).price
-    litres_pvt = data.set_index(['date', 'state', 'loc']).unstack(level=[1,2]).litres
+    price_pvt = data.set_index(['date', 'state', 'mun']).unstack(level=[1,2]).price
+    litres_pvt = data.set_index(['date', 'state', 'mun']).unstack(level=[1,2]).litres
 
     day = 24*60*60
 
@@ -56,7 +55,7 @@ class WindowGenerator():
         self.l_df = l_df
         self.d_df = d_df
 
-        self.coords = data.assign(aux=1).groupby(['state', 'loc', 'lat', 'lon']).agg({'aux': 'sum'}).reset_index().drop(columns=["aux"])
+        self.coords = data.assign(aux=1).groupby(['state', 'mun', 'lat', 'lon']).agg({'aux': 'sum'}).reset_index().drop(columns=["aux"])
         
         # Batch and test size
         self.batch = batch

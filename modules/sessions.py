@@ -5,13 +5,22 @@ from modules import inference
 
 class ProjectSessions(object):
     def __init__(self):
+
         self.session = 'A'
         
-        self.get_coords = data.get_coords
+        self.download_project_data = data.download_project_data
+
+        self.coords = data.census.dask_read_coords()
 
         self.get_prices = data.get_prices
 
         self.get_pop = data.get_pop
+
+        self.deomgraphics = data.census.dask_read_INEGI_census(period='2020')
+        
+        self.economics = data.census.dask_read_INEGI_economy()
+
+        self.get_inegi = data.census.read_INEGI_data
 
         self.get_demand = data.get_demand
 
