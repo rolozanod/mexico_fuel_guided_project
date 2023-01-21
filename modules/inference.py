@@ -22,7 +22,7 @@ def plot_objective_hist(objective):
 
     fig.show()
 
-def plot_plant_production_plan(production, period_stats):
+def plot_plant_production_plan(production, period_stats, save_path=None):
 
     production = production.copy()
 
@@ -62,7 +62,10 @@ def plot_plant_production_plan(production, period_stats):
             }
 
     fig = go.Figure(data=data, layout = layout)
-    fig.show()
+    if save_path is None:
+        fig.show()
+    else:
+        fig.write_html(save_path)
 
 def plot_plant_capex_plan(production, period_stats):
 
@@ -108,7 +111,7 @@ def plot_plant_capex_plan(production, period_stats):
     fig = go.Figure(data=data, layout = layout)
     fig.show()
 
-def plot_market_consumption(market, demand, period_stats):
+def plot_market_consumption(market, demand, period_stats, save_path=None):
 
     market['date'] = market['T'].map(period_stats['date'].to_dict())
 
@@ -157,7 +160,10 @@ def plot_market_consumption(market, demand, period_stats):
             }
 
     fig = go.Figure(data=data, layout = layout)
-    fig.show()
+    if save_path is None:
+        fig.show()
+    else:
+        fig.write_html(save_path)
 
 def get_NPV_stats(production, period_stats, wacc):
 
